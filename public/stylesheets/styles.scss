@@ -1,0 +1,152 @@
+$font-stack: 'Lato', sans-serif;
+$primary-color: #68b3fb;
+$primary-color-2: #60e2fb;
+$dark-color: #393E41;
+$light-color: #f5f9fc;
+$transparent: rgba(0, 0, 0, 0);
+$gradient: linear-gradient(to top right, $primary-color, $primary-color-2);
+
+html, body {
+  width: 100%;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  font: 100% $font-stack;
+}
+
+#container {
+  height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  -webkit-perspective: 1px;
+  perspective: 1px;
+  perspective-origin: calc(50% - 7.5px) 50%; // account for the scrollbar
+  background-color: $transparent;
+}
+
+#root {
+  background-color: $transparent;
+}
+
+.parallax {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.parallax-front {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+.parallax-background {
+  -webkit-transform: translateZ(-1px) scale(2);
+  transform: translateZ(-1px) scale(2);
+}
+
+#background {
+  width: 100%;
+  height: 250%;
+  background: url("/images/lib2.jpg");
+}
+
+a {
+  color: #00B7FF;
+}
+
+div {
+  background-color: $light-color;
+}
+
+.nav {
+  padding: 10px;
+  display: block;
+  text-align: left;
+}
+
+.nav h3, .nav p {
+  display: inline-block;
+  margin: 10px;
+}
+
+.homepage {
+  background-color: $transparent;
+}
+
+.homepage-title {
+  height: 80%;
+  width: 100%;
+  padding: 20px 0 20px 0;
+  background: $gradient;
+  color: white;
+  text-align: center;
+}
+
+.homepage-title div {
+  background-color: $transparent;
+  display: inline-block;
+  margin-top: 150px;
+}
+
+.homepage-title div h1 {
+  font-size: 1000%;
+  margin: 0;
+  padding: 10px;
+  font-weight: normal;
+}
+
+.homepage-title div .button {
+  float: right;
+}
+
+.button {
+  padding: 10px;
+  margin: 5px;
+  text-decoration: none;
+  color: $primary-color;
+  background-color: $light-color;
+  border-radius: 5px;
+  &:hover {
+    background-color: lighten($light-color, 50%);
+  }
+}
+
+.divider {
+  width: 100%;
+  overflow-x: hidden;
+  position: relative;
+  height: 600px;
+  background-color: transparent;
+  box-shadow: inset 0px 6px 10px -6px grey, inset 0 -6px 10px -6px grey;
+}
+
+.paragraph {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 600px;
+  width: 100%;
+  font-size: 200%;
+  background-color: $light-color;
+  color: $dark-color;
+}
+
+.paragraph > div {
+  padding: 40px;
+}
+
+.paragraph > div > p {
+  line-height: 1.5em;
+}
+
+.event-container {
+  min-height: 400px;
+  width: calc(100% - 40px);
+  padding: 20px;
+}
