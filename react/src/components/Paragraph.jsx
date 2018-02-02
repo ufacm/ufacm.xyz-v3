@@ -10,7 +10,7 @@ class Paragraph extends React.Component {
   <div>
     <p>
       This is some text about the UF ACM.
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec volutpat ultricies libero. Vestibulum sit amet turpis eget enim blandit ultrices sit amet et felis.
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec volutpat ultricies libero. 
 
     </p>
   </div>

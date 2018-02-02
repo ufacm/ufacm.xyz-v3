@@ -39,7 +39,7 @@ var Paragraph = function (_React$Component) {
                     _react2.default.createElement(
                         "p",
                         null,
-                        "This is some text about the UF ACM. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec volutpat ultricies libero. Vestibulum sit amet turpis eget enim blandit ultrices sit amet et felis."
+                        "This is some text about the UF ACM. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec volutpat ultricies libero."
                     )
                 )
             );

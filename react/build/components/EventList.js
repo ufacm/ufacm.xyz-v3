@@ -77,6 +77,7 @@ var EventList = function (_React$Component2) {
         _this2.state = {
             events: [],
             loadedEventsFromServer: false,
+            waitingForServer: true,
             failed: false
         };
 
@@ -92,7 +93,7 @@ var EventList = function (_React$Component2) {
     _createClass(EventList, [{
         key: 'refresh',
         value: function refresh() {
-            this.setState({ failed: false, loadedEventsFromServer: false });
+            this.setState({ failed: false, waitingForServer: true });
             this.getEventsFromServer();
         }
     }, {
@@ -111,20 +112,22 @@ var EventList = function (_React$Component2) {
         value: function setStateFromEvents(json_string) {
             var serverData = JSON.parse(json_string);
             var events = serverData.applets;
+
             window.setTimeout(function () {
                 this.setState({
                     events: events,
                     loadedEventsFromServer: true,
+                    waitingForServer: false,
                     failed: false
                 });
-            }.bind(this), 500);
+            }.bind(this), 0);
         }
     }, {
         key: 'onfail',
         value: function onfail() {
             console.log("failed");
             window.setTimeout(function () {
-                this.setState({ failed: true });
+                this.setState({ failed: true, waitingForServer: false });
             }.bind(this), 500);
         }
     }, {
@@ -149,9 +152,16 @@ var EventList = function (_React$Component2) {
                     'Fetching events...'
                 );
             }
+
+            var refreshText;
+            if (this.state.waitingForServer) {
+                refreshText = "Loading";
+            } else {
+                refreshText = "Refresh";
+            }
             return _react2.default.createElement(
                 'div',
-                { className: 'event-container' },
+                { className: 'events-container' },
                 _react2.default.createElement(
                     'h2',
                     null,
@@ -160,9 +170,13 @@ var EventList = function (_React$Component2) {
                 _react2.default.createElement(
                     'button',
                     { onClick: this.refresh },
-                    'Refresh'
+                    refreshText
                 ),
-                events
+                _react2.default.createElement(
+                    'div',
+                    { className: 'events' },
+                    events
+                )
             );
         }
     }]);

@@ -24,6 +24,7 @@ class EventList extends React.Component {
         this.state = {
           events: [],
           loadedEventsFromServer: false,
+          waitingForServer: true,
           failed: false
         };
 
@@ -36,7 +37,7 @@ class EventList extends React.Component {
     }
 
     refresh() {
-        this.setState({failed: false, loadedEventsFromServer: false});
+        this.setState({failed: false, waitingForServer: true});
         this.getEventsFromServer()
     }
 
@@ -53,19 +54,21 @@ class EventList extends React.Component {
     setStateFromEvents(json_string) {
         let serverData = JSON.parse(json_string);
         let events = serverData.applets;
+
         window.setTimeout(function() {
             this.setState({
                 events: events,
                 loadedEventsFromServer: true,
+                waitingForServer: false,
                 failed: false
             });
-        }.bind(this), 500);
+        }.bind(this), 0);
     }
 
     onfail() {
         console.log("failed");
         window.setTimeout(function() {
-            this.setState({failed: true});
+            this.setState({failed: true, waitingForServer: false});
         }.bind(this), 500);
     }
 
@@ -84,11 +87,19 @@ class EventList extends React.Component {
         else {
             events = <p>Fetching events...</p>
         }
+
+        var refreshText;
+        if (this.state.waitingForServer) {
+            refreshText = "Loading";
+        }
+        else {
+            refreshText = "Refresh";
+        }
         return (
-            <div className="event-container">
+            <div className="events-container">
                 <h2>Events</h2>
-                <button onClick={this.refresh}>Refresh</button>
-                {events}
+                <button onClick={this.refresh}>{refreshText}</button>
+                <div className="events">{events}</div>
             </div>
         );
     }
