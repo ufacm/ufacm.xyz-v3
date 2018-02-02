@@ -1,8 +1,9 @@
 $font-stack: 'Lato', sans-serif;
 $primary-color: #68b3fb;
-$primary-color-2: #60e2fb;
+$primary-color-2: #59e2fb;
 $dark-color: #393E41;
 $light-color: #f5f9fc;
+$lighter-color: lighten($light-color, 100%);
 $transparent: rgba(0, 0, 0, 0);
 $gradient: linear-gradient(to top right, $primary-color, $primary-color-2);
 
@@ -68,11 +69,24 @@ div {
   padding: 10px;
   display: block;
   text-align: left;
+  background-color: $dark-color;
 }
 
 .nav h3, .nav p {
   display: inline-block;
   margin: 10px;
+  color: $light-color;
+}
+
+.nav a {
+    padding: 10px;
+    color: $light-color;
+    text-decoration: none;
+    border-radius: 3px;
+    &:hover {
+        background-image: $gradient;
+        color: $dark-color;
+    }
 }
 
 .homepage {
@@ -80,7 +94,7 @@ div {
 }
 
 .homepage-title {
-  height: 80%;
+  height: 85%;
   width: 100%;
   padding: 20px 0 20px 0;
   background: $gradient;
@@ -113,7 +127,7 @@ div {
   background-color: $light-color;
   border-radius: 5px;
   &:hover {
-    background-color: lighten($light-color, 50%);
+    background-color: $lighter-color;
   }
 }
 
@@ -149,4 +163,30 @@ div {
   min-height: 400px;
   width: calc(100% - 40px);
   padding: 20px;
+}
+
+.popup-form {
+    position: fixed;
+    top: 10%;
+    left: 25%;
+
+    width: calc(50% - 40px);
+
+    text-align: center;
+    border: 3px solid darken($light-color, 10%);
+    border-radius: 10px;
+    padding: 30px;
+
+    box-shadow: 0px 0px 5px grey;
+}
+
+.popup-form input {
+    padding: 8px;
+    display: block;
+    margin: 12px auto;
+    width: 60%;
+}
+
+.popup-form form {
+    padding: 10px;
 }

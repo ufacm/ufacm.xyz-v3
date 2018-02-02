@@ -6,10 +6,10 @@ class Nav extends React.Component {
     }
 
     render() {
-        return <div class="nav">
-            <h3>UF ACM</h3>
-            <p><a href="/login">Log In</a></p>
-            <p><a href="/signup">Sign Up</a></p>
+        return <div className="nav">
+            <h3><a href="/">UF ACM</a></h3>
+            <p><a onClick={this.props.onLoginButtonClick}>Log In</a></p>
+            <p><a onClick={this.props.onSignupButtonClick}>Sign Up</a></p>
         </div>
     }
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import PopupForm from './PopupForm';
 
 class HomepageTitle extends React.Component {
     constructor(props) {
@@ -6,11 +7,11 @@ class HomepageTitle extends React.Component {
     }
 
     render() {
-        return <div class="homepage-title">
+        return <div className="homepage-title">
           <div>
             <h1>UF ACM</h1>
-            <a class="button" href="/login">Log In</a>
-            <a class="button" href="/signup">Sign Up</a>
+            <button className="button" onClick={this.props.onLoginButtonClick}>Log In</button>
+            <button className="button" onClick={this.props.onSignupButtonClick}>Sign Up</button>
           </div>
         </div>;
     }
