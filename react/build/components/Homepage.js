@@ -97,8 +97,12 @@ var Homepage = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
-            var loginPopup = _react2.default.createElement(_PopupForm2.default, { close: this.closePopups, formType: 'login' });
-            var signupPopup = _react2.default.createElement(_PopupForm2.default, { close: this.closePopups, formType: 'signup' });
+            var loginPopup = _react2.default.createElement(_PopupForm2.default, { close: this.closePopups,
+                formType: 'login',
+                formURL: '/login' });
+            var signupPopup = _react2.default.createElement(_PopupForm2.default, { close: this.closePopups,
+                formType: 'signup',
+                formURL: '/signup' });
 
             return _react2.default.createElement(
                 'div',

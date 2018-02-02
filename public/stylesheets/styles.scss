@@ -1,11 +1,15 @@
 $font-stack: 'Lato', sans-serif;
+$acm-font: 'Comfortaa', 'Lato', sans-serif;
 $primary-color: #68b3fb;
 $primary-color-2: #59e2fb;
 $dark-color: #393E41;
 $light-color: #f5f9fc;
 $lighter-color: lighten($light-color, 100%);
+$darker-light-color: darken($light-color, 10%);
 $transparent: rgba(0, 0, 0, 0);
 $gradient: linear-gradient(to top right, $primary-color, $primary-color-2);
+$nav-height: 60px;
+
 
 html, body {
   width: 100%;
@@ -54,7 +58,8 @@ body {
 #background {
   width: 100%;
   height: 250%;
-  background: url("/images/lib2.jpg");
+  background-image: url("/images/lib2.jpg");
+  background-size: cover;
 }
 
 a {
@@ -70,12 +75,17 @@ div {
   display: block;
   text-align: left;
   background-color: $dark-color;
+  height: calc($nav-height - 20px);
 }
 
 .nav h3, .nav p {
   display: inline-block;
   margin: 10px;
   color: $light-color;
+}
+
+.nav h3 {
+    font-family: $acm-font;
 }
 
 .nav a {
@@ -94,25 +104,57 @@ div {
 }
 
 .homepage-title {
-  height: 85%;
-  width: 100%;
-  padding: 20px 0 20px 0;
-  background: $gradient;
-  color: white;
-  text-align: center;
+    height: calc(90% - 60px - 40px);
+    width: 100%;
+    padding: 20px 0;
+    background: $gradient;
+    color: white;
+    text-align: center;
+    position: relative;
 }
 
-.homepage-title div {
-  background-color: $transparent;
-  display: inline-block;
-  margin-top: 150px;
+.particles-canvas {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    bottom: 0px;
+    display: inline-block;
+    z-index: 0;
+}
+
+.homepage-title > div.particles-canvas-container {
+    width: 100%;
+    height: 100%;
+    background: $transparent;
+}
+
+.homepage-title > div.title-container {
+    background-color: $transparent;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    display: inline-block;
+    margin-top: 150px;
+    max-width: 800px;
+    width: 80%;
+    z-index: 1;
+}
+
+.homepage-title div img {
+    width: 100%;
+    max-width: 800px;
+    margin: auto;
+    // padding: 0 10%;
 }
 
 .homepage-title div h1 {
-  font-size: 1000%;
+  font-size: larger;
   margin: 0;
   padding: 10px;
   font-weight: normal;
+  font-family: $acm-font;
 }
 
 .homepage-title div .button {
@@ -126,6 +168,7 @@ div {
   color: $primary-color;
   background-color: $light-color;
   border-radius: 5px;
+  outline: none;
   &:hover {
     background-color: $lighter-color;
   }
@@ -135,7 +178,7 @@ div {
   width: 100%;
   overflow-x: hidden;
   position: relative;
-  height: 600px;
+  height: 40%;
   background-color: transparent;
   box-shadow: inset 0px 6px 10px -6px grey, inset 0 -6px 10px -6px grey;
 }
@@ -144,7 +187,7 @@ div {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 600px;
+  min-height: 55%;
   width: 100%;
   font-size: 200%;
   background-color: $light-color;
@@ -160,33 +203,44 @@ div {
 }
 
 .event-container {
-  min-height: 400px;
+  height: 60%;
+  overflow-y: auto;
   width: calc(100% - 40px);
   padding: 20px;
 }
 
 .popup-form {
-    position: fixed;
-    top: 10%;
-    left: 25%;
+    position: absolute;
+    top: 20%;
 
-    width: calc(50% - 40px);
+    // center horizontally
+    left: 0;
+    right: 0;
+    margin: 0 auto;
 
-    text-align: center;
+    width: calc(80% - 20px);
+    max-width: 450px;
+
+
     border: 3px solid darken($light-color, 10%);
     border-radius: 10px;
-    padding: 30px;
+    padding: 10px;
 
     box-shadow: 0px 0px 5px grey;
+    z-index: 1000; // put on top of everything
 }
 
 .popup-form input {
     padding: 8px;
     display: block;
     margin: 12px auto;
-    width: 60%;
+    width: 80%;
 }
 
 .popup-form form {
-    padding: 10px;
+    // padding: 10px;
+}
+
+.clickable {
+    cursor: pointer;
 }

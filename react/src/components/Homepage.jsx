@@ -58,8 +58,12 @@ class Homepage extends React.Component {
     }
 
     render() {
-        let loginPopup = <PopupForm close={this.closePopups} formType="login" />;
-        let signupPopup = <PopupForm close={this.closePopups} formType="signup" />;
+        let loginPopup = <PopupForm close={this.closePopups}
+                                    formType="login"
+                                    formURL="/login" />;
+        let signupPopup = <PopupForm close={this.closePopups}
+                                    formType="signup"
+                                    formURL="/signup" />;
 
         return <div className="homepage">
             {this.state.showLoginPopup? loginPopup : null}

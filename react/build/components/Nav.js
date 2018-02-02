@@ -39,7 +39,7 @@ var Nav = function (_React$Component) {
                     _react2.default.createElement(
                         "a",
                         { href: "/" },
-                        "UF ACM"
+                        "uf acm"
                     )
                 ),
                 _react2.default.createElement(
@@ -47,7 +47,7 @@ var Nav = function (_React$Component) {
                     null,
                     _react2.default.createElement(
                         "a",
-                        { onClick: this.props.onLoginButtonClick },
+                        { className: "clickable", onClick: this.props.onLoginButtonClick },
                         "Log In"
                     )
                 ),
@@ -56,7 +56,7 @@ var Nav = function (_React$Component) {
                     null,
                     _react2.default.createElement(
                         "a",
-                        { onClick: this.props.onSignupButtonClick },
+                        { className: "clickable", onClick: this.props.onSignupButtonClick },
                         "Sign Up"
                     )
                 )

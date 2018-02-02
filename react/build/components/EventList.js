@@ -75,34 +75,80 @@ var EventList = function (_React$Component2) {
         var _this2 = _possibleConstructorReturn(this, (EventList.__proto__ || Object.getPrototypeOf(EventList)).call(this));
 
         _this2.state = {
-            events: []
+            events: [],
+            loadedEventsFromServer: false,
+            failed: false
         };
+
+        // bind(this) allows this.setState() to be in correct scope
+        _this2.onfail = _this2.onfail.bind(_this2);
+        _this2.setStateFromEvents = _this2.setStateFromEvents.bind(_this2);
+        _this2.refresh = _this2.refresh.bind(_this2);
 
         _this2.getEventsFromServer();
         return _this2;
     }
 
     _createClass(EventList, [{
+        key: 'refresh',
+        value: function refresh() {
+            this.setState({ failed: false, loadedEventsFromServer: false });
+            this.getEventsFromServer();
+        }
+    }, {
         key: 'getEventsFromServer',
         value: function getEventsFromServer() {
             var url = 'https://raw.githubusercontent.com/garyg1/garyg1.github.io/master/json/applets.json';
-            _jquery2.default.get(url, this.setStateFromEvents.bind(this));
-            // bind(this) allows this.setState() to be in correct scope
+            _jquery2.default.ajax({
+                url: url,
+                type: "GET",
+                success: this.setStateFromEvents,
+                error: this.onfail
+            });
         }
     }, {
         key: 'setStateFromEvents',
         value: function setStateFromEvents(json_string) {
             var serverData = JSON.parse(json_string);
             var events = serverData.applets;
-            this.setState({ events: events });
+            window.setTimeout(function () {
+                this.setState({
+                    events: events,
+                    loadedEventsFromServer: true,
+                    failed: false
+                });
+            }.bind(this), 500);
+        }
+    }, {
+        key: 'onfail',
+        value: function onfail() {
+            console.log("failed");
+            window.setTimeout(function () {
+                this.setState({ failed: true });
+            }.bind(this), 500);
         }
     }, {
         key: 'render',
         value: function render() {
-            var events = this.state.events.map(function (event) {
-                return _react2.default.createElement(Event, { key: event.name, name: event.name, description: event.description,
-                    url: event.url });
-            });
+            var events;
+            if (this.state.loadedEventsFromServer) {
+                events = this.state.events.map(function (event) {
+                    return _react2.default.createElement(Event, { key: event.name, name: event.name, description: event.description,
+                        url: event.url });
+                });
+            } else if (this.state.failed) {
+                events = _react2.default.createElement(
+                    'p',
+                    null,
+                    'Sorry, we couldn\'t fetch events at this time.'
+                );
+            } else {
+                events = _react2.default.createElement(
+                    'p',
+                    null,
+                    'Fetching events...'
+                );
+            }
             return _react2.default.createElement(
                 'div',
                 { className: 'event-container' },
@@ -110,6 +156,11 @@ var EventList = function (_React$Component2) {
                     'h2',
                     null,
                     'Events'
+                ),
+                _react2.default.createElement(
+                    'button',
+                    { onClick: this.refresh },
+                    'Refresh'
                 ),
                 events
             );
