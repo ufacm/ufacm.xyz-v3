@@ -1,0 +1,34 @@
+@import 'Headers.scss';
+
+
+.popup-form {
+    position: absolute;
+    top: 20%;
+
+    // center horizontally
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+
+    width: calc(80% - 20px);
+    max-width: 450px;
+
+
+    border: 3px solid darken($light-color, 10%);
+    border-radius: 10px;
+    padding: 10px;
+
+    box-shadow: 0px 0px 5px grey;
+    z-index: 1000; // put on top of everything
+}
+
+.popup-form input {
+    padding: 8px;
+    display: block;
+    margin: 12px auto;
+    width: 80%;
+}
+
+.popup-form form {
+    // padding: 10px;
+}

@@ -28,8 +28,41 @@ var Nav = function (_React$Component) {
     }
 
     _createClass(Nav, [{
+        key: "renderLink",
+        value: function renderLink(name, onClick) {
+            return _react2.default.createElement(
+                "p",
+                null,
+                _react2.default.createElement(
+                    "a",
+                    { className: "clickable", onClick: onClick },
+                    name
+                )
+            );
+        }
+    }, {
         key: "render",
         value: function render() {
+            console.log(this.props);
+            if (this.props.signedin) {
+                return _react2.default.createElement(
+                    "div",
+                    { className: "nav" },
+                    _react2.default.createElement(
+                        "h3",
+                        null,
+                        _react2.default.createElement(
+                            "a",
+                            { href: "/" },
+                            "uf acm"
+                        )
+                    ),
+                    this.renderLink(this.props.user.name, null),
+                    this.renderLink("Events", null),
+                    this.renderLink("Upload Resume", null),
+                    this.renderLink("Log Out", null)
+                );
+            }
             return _react2.default.createElement(
                 "div",
                 { className: "nav" },
@@ -42,24 +75,8 @@ var Nav = function (_React$Component) {
                         "uf acm"
                     )
                 ),
-                _react2.default.createElement(
-                    "p",
-                    null,
-                    _react2.default.createElement(
-                        "a",
-                        { className: "clickable", onClick: this.props.onLoginButtonClick },
-                        "Log In"
-                    )
-                ),
-                _react2.default.createElement(
-                    "p",
-                    null,
-                    _react2.default.createElement(
-                        "a",
-                        { className: "clickable", onClick: this.props.onSignupButtonClick },
-                        "Sign Up"
-                    )
-                )
+                this.renderLink("Log In", this.props.onLoginButtonClick),
+                this.renderLink("Sign Up", this.props.onSignupButtonClick)
             );
         }
     }]);

@@ -22,9 +22,9 @@ var _Paragraph = require('./Paragraph');
 
 var _Paragraph2 = _interopRequireDefault(_Paragraph);
 
-var _EventList = require('./EventList');
+var _SmallEventList = require('./SmallEventList');
 
-var _EventList2 = _interopRequireDefault(_EventList);
+var _SmallEventList2 = _interopRequireDefault(_SmallEventList);
 
 var _PopupForm = require('./PopupForm');
 
@@ -116,7 +116,7 @@ var Homepage = function (_React$Component) {
                 _react2.default.createElement('div', { className: 'divider' }),
                 _react2.default.createElement(_Paragraph2.default, null),
                 _react2.default.createElement('div', { className: 'divider' }),
-                _react2.default.createElement(_EventList2.default, null)
+                _react2.default.createElement(_SmallEventList2.default, null)
             );
         }
     }]);

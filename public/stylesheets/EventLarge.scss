@@ -1,0 +1,50 @@
+// this UI is bad for mobile
+
+.event-large {
+    display: block;
+    float: left;
+    max-width: 800px;
+    outline: 1px solid black;
+    padding: 20px;
+    margin: 20px 20px;
+}
+
+.event-large-title {
+    display: inline-block;
+    float: left;
+}
+
+.event-large-header > div {
+    display: block;
+    float: left;
+    padding: 10px;
+}
+
+.event-large-header h2 {
+    margin-top: 0px;
+}
+
+.event-large-body {
+    display: block;
+    float: left;
+}
+
+.event-large-body img {
+    border: 10px solid $dark-color;
+    max-width: calc(400px - 20px);
+    width: calc(50% - 20px);
+    float: left;
+}
+
+.event-large-description {
+    display: block;
+    float: left;
+    padding: 0 20px;
+    margin-left: 10px;
+    width: calc(50% - 50px);
+}
+
+.event-large-description p {
+    display: block;
+    text-align: justify;
+}

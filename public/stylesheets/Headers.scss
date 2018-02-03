@@ -1,0 +1,11 @@
+$font-stack: 'Lato', sans-serif;
+$acm-font: 'Comfortaa', 'Lato', sans-serif;
+$primary-color: #68b3fb;
+$primary-color-2: #59e2fb;
+$dark-color: #393E41;
+$light-color: #f5f9fc;
+$lighter-color: lighten($light-color, 100%);
+$darker-light-color: darken($light-color, 10%);
+$transparent: rgba(0, 0, 0, 0);
+$gradient: linear-gradient(to top right, $primary-color, $primary-color-2);
+$nav-height: 60px;

@@ -1,0 +1,31 @@
+@import 'Headers.scss';
+
+
+.nav {
+  padding: 10px;
+  display: block;
+  text-align: left;
+  background-color: $dark-color;
+  height: calc($nav-height - 20px);
+}
+
+.nav h3, .nav p {
+  display: inline-block;
+  margin: 10px;
+  color: $light-color;
+}
+
+.nav h3 {
+    font-family: $acm-font;
+}
+
+.nav a {
+    padding: 10px;
+    color: $light-color;
+    text-decoration: none;
+    border-radius: 3px;
+    &:hover {
+        background-image: $gradient;
+        color: $dark-color;
+    }
+}

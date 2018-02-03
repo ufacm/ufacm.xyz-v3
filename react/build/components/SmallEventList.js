@@ -28,57 +28,35 @@ var Event = function (_React$Component) {
     function Event(props) {
         _classCallCheck(this, Event);
 
-        return _possibleConstructorReturn(this, (Event.__proto__ || Object.getPrototypeOf(Event)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (Event.__proto__ || Object.getPrototypeOf(Event)).call(this, props));
+
+        _this.props = props;
+        return _this;
     }
 
     _createClass(Event, [{
         key: 'render',
         value: function render() {
-            // TODO: this UI design is bad for mobile -- fix!
             return _react2.default.createElement(
                 'div',
-                { className: 'event-large' },
+                { className: 'event' },
                 _react2.default.createElement(
-                    'div',
-                    { className: 'event-large-header' },
-                    _react2.default.createElement(
-                        'div',
-                        null,
-                        _react2.default.createElement(
-                            'h2',
-                            null,
-                            this.props.event.name
-                        )
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        null,
-                        _react2.default.createElement(
-                            'button',
-                            { className: 'button clickable' },
-                            'Sign In'
-                        )
-                    )
+                    'h3',
+                    null,
+                    this.props.data.name
                 ),
                 _react2.default.createElement(
-                    'div',
-                    { className: 'event-large-body' },
-                    _react2.default.createElement('img', { src: this.props.event.image_url }),
+                    'p',
+                    null,
+                    this.props.data.description
+                ),
+                _react2.default.createElement(
+                    'p',
+                    null,
                     _react2.default.createElement(
-                        'div',
-                        { className: 'event-large-description' },
-                        _react2.default.createElement(
-                            'p',
-                            null,
-                            'About: ',
-                            this.props.event.description
-                        ),
-                        _react2.default.createElement(
-                            'p',
-                            null,
-                            'Date: ',
-                            this.props.event.date
-                        )
+                        'a',
+                        { href: this.props.data.url },
+                        this.props.data.url
                     )
                 )
             );
@@ -88,13 +66,13 @@ var Event = function (_React$Component) {
     return Event;
 }(_react2.default.Component);
 
-var EventList = function (_React$Component2) {
-    _inherits(EventList, _React$Component2);
+var SmallEventList = function (_React$Component2) {
+    _inherits(SmallEventList, _React$Component2);
 
-    function EventList() {
-        _classCallCheck(this, EventList);
+    function SmallEventList() {
+        _classCallCheck(this, SmallEventList);
 
-        var _this2 = _possibleConstructorReturn(this, (EventList.__proto__ || Object.getPrototypeOf(EventList)).call(this));
+        var _this2 = _possibleConstructorReturn(this, (SmallEventList.__proto__ || Object.getPrototypeOf(SmallEventList)).call(this));
 
         _this2.state = {
             events: [],
@@ -112,7 +90,7 @@ var EventList = function (_React$Component2) {
         return _this2;
     }
 
-    _createClass(EventList, [{
+    _createClass(SmallEventList, [{
         key: 'refresh',
         value: function refresh() {
             this.setState({ failed: false, waitingForServer: true });
@@ -121,7 +99,7 @@ var EventList = function (_React$Component2) {
     }, {
         key: 'getEventsFromServer',
         value: function getEventsFromServer() {
-            var url = '/jsons/events.json';
+            var url = 'https://raw.githubusercontent.com/garyg1/garyg1.github.io/master/json/applets.json';
             _jquery2.default.ajax({
                 url: url,
                 type: "GET",
@@ -132,9 +110,8 @@ var EventList = function (_React$Component2) {
     }, {
         key: 'setStateFromEvents',
         value: function setStateFromEvents(json_string) {
-            console.log(json_string);
-            var serverData = json_string;
-            var events = serverData.events;
+            var serverData = JSON.parse(json_string);
+            var events = serverData.applets;
 
             window.setTimeout(function () {
                 this.setState({
@@ -159,7 +136,7 @@ var EventList = function (_React$Component2) {
             var events;
             if (this.state.loadedEventsFromServer) {
                 events = this.state.events.map(function (event) {
-                    return _react2.default.createElement(Event, { key: event.name, event: event });
+                    return _react2.default.createElement(Event, { key: event.name, data: event });
                 });
             } else if (this.state.failed) {
                 events = _react2.default.createElement(
@@ -191,7 +168,7 @@ var EventList = function (_React$Component2) {
                 ),
                 _react2.default.createElement(
                     'button',
-                    { className: 'clickable button', onClick: this.refresh },
+                    { onClick: this.refresh },
                     refreshText
                 ),
                 _react2.default.createElement(
@@ -203,7 +180,7 @@ var EventList = function (_React$Component2) {
         }
     }]);
 
-    return EventList;
+    return SmallEventList;
 }(_react2.default.Component);
 
-exports.default = EventList;
+exports.default = SmallEventList;

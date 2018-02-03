@@ -2,7 +2,7 @@ import React from 'react';
 import HomepageTitle from './HomepageTitle';
 import Nav from './Nav';
 import Paragraph from './Paragraph';
-import EventList from './EventList';
+import SmallEventList from './SmallEventList';
 import PopupForm from './PopupForm';
 
 
@@ -75,7 +75,7 @@ class Homepage extends React.Component {
             <div className="divider"></div>
             <Paragraph />
             <div className="divider"></div>
-            <EventList />
+            <SmallEventList />
         </div>;
     }
 }

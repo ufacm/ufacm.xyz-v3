@@ -4,36 +4,23 @@ import $ from 'jquery';
 class Event extends React.Component {
     constructor(props) {
         super(props);
+        this.props = props;
     }
 
     render() {
-        // TODO: this UI design is bad for mobile -- fix!
         return (
-            <div className='event-large'>
-                <div className='event-large-header'>
-                    <div>
-                        <h2>{this.props.event.name}</h2>
-                    </div>
-                    <div>
-                        <button className="button clickable">Sign In</button>
-                    </div>
-                </div>
-                <div className='event-large-body'>
-                    <img src={this.props.event.image_url} />
-                    <div className='event-large-description'>
-                        <p>About: {this.props.event.description}</p>
-                        <p>Date: {this.props.event.date}</p>
-                    </div>
-                </div>
+            <div className='event'>
+                <h3>{this.props.data.name}</h3>
+                <p>{this.props.data.description}</p>
+                <p><a href={this.props.data.url}>{this.props.data.url}</a></p>
             </div>
         )
     }
 }
 
-export default class EventList extends React.Component {
+class SmallEventList extends React.Component {
     constructor() {
         super();
-
         this.state = {
           events: [],
           loadedEventsFromServer: false,
@@ -55,7 +42,7 @@ export default class EventList extends React.Component {
     }
 
     getEventsFromServer() {
-        let url = '/jsons/events.json';
+        let url = 'https://raw.githubusercontent.com/garyg1/garyg1.github.io/master/json/applets.json';
         $.ajax({
             url: url,
             type: "GET",
@@ -65,9 +52,8 @@ export default class EventList extends React.Component {
     }
 
     setStateFromEvents(json_string) {
-        console.log(json_string);
-        let serverData = json_string;
-        let events = serverData.events;
+        let serverData = JSON.parse(json_string);
+        let events = serverData.applets;
 
         window.setTimeout(function() {
             this.setState({
@@ -89,7 +75,10 @@ export default class EventList extends React.Component {
     render() {
         var events;
         if (this.state.loadedEventsFromServer) {
-            events = this.state.events.map((event) => <Event key={event.name} event={event} />);
+            events = this.state.events.map((event) =>
+                <Event key={event.name} data={event}>
+                </Event>
+            );
         }
         else if (this.state.failed) {
             events = <p>Sorry, we couldn't fetch events at this time.</p>
@@ -108,9 +97,10 @@ export default class EventList extends React.Component {
         return (
             <div className="events-container">
                 <h2>Events</h2>
-                <button className="clickable button" onClick={this.refresh}>{refreshText}</button>
+                <button onClick={this.refresh}>{refreshText}</button>
                 <div className="events">{events}</div>
             </div>
         );
     }
 }
+export default SmallEventList;
