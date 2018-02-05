@@ -17,4 +17,4 @@ This does a few things (in parallel):
 3. has Webpack watch for changes and recompile
 
 **When running the server, use `Ctrl-C` to quit, not `Ctrl-Z`.**
-Otherwise the npm process will remain bound to port 3000 and you will not be able to restart the server!
+Otherwise the npm process not halt, and will remain bound to port 3000 and you will not be able to restart the server!
