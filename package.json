@@ -3,12 +3,12 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "babel react/src -d react/build && npx webpack",
-    "build-watch": "parallel -j 2 -- 'babel react/src -d react/build --watch' 'npx webpack --watch'",
+    "build": "webpack",
     "start": "node ./bin/www",
     "build-start": "npm run build && npm start",
-    "build-start-watch": "parallel -j 2 -- 'npm run build-watch' 'npm run start'",
-    "bsw": "npm run build-start-watch"
+    "build-start-watch": "webpack --watch & npm start",
+    "bsw": "npm run build-start-watch",
+    "dev": "npm run build-start-watch"
   },
   "dependencies": {
     "babel-preset-es2015": "^6.24.1",
@@ -27,6 +27,8 @@
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "webpack": "^3.10.0"

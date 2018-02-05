@@ -1,32 +1,38 @@
 module.exports = [
     {
-        entry: './react/build/index.js',
+        entry: './react/src/index.jsx',
         output: {
             filename: './public/javascripts/index.js'
         },
-        watch: false,
         module: {
-            rules: [
+            loaders: [
                 {
-                    test: /\.css$/,
-                    use: [ 'style-loader', 'css-loader' ]
+                    test: /.jsx$/,
+                    loader: 'babel-loader',
+                    exclude: /node_modules/,
+                    query: {
+                        presets: ['react']
+                    }
                 }
             ]
         }
     },
     {
-        entry: './react/build/mainapp.js',
+        entry: './react/src/mainapp.jsx',
         output: {
             filename: './public/javascripts/mainapp.js'
         },
-        watch: false,
         module: {
-            rules: [
+            loaders: [
                 {
-                    test: /\.css$/,
-                    use: [ 'style-loader', 'css-loader' ]
+                    test: /.jsx$/,
+                    loader: 'babel-loader',
+                    exclude: /node_modules/,
+                    query: {
+                        presets: ['react']
+                    }
                 }
             ]
         }
     }
-]
+];

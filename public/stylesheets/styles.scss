@@ -17,14 +17,9 @@ body {
   font: 100% $font-stack;
 }
 
-a {
-  color: #00B7FF;
-}
-
-
 .button {
   padding: 10px;
-  margin: 5px;
+  margin: 0 5px 0 0;
   text-decoration: none;
   color: $primary-color;
   background-color: $light-color;
@@ -38,4 +33,8 @@ a {
 
 .clickable {
     cursor: pointer;
+}
+
+.white {
+    background-color: $light-color;
 }

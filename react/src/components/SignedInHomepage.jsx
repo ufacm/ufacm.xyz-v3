@@ -1,6 +1,6 @@
 import React from 'react';
-import Nav from './Nav';
-import EventList from './EventList'
+import Nav from './Nav.jsx';
+import EventList from './EventList.jsx'
 
 export default class SignedInHomepage extends React.Component {
     constructor() {

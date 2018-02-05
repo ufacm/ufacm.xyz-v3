@@ -9,10 +9,13 @@ class Event extends React.Component {
     render() {
         // TODO: this UI design is bad for mobile -- fix!
         return (
-            <div className='event-large'>
+            <div className='event-large white'>
                 <div className='event-large-header'>
                     <div>
-                        <h2>{this.props.event.name}</h2>
+                        <h3>{this.props.event.name}</h3>
+                    </div>
+                    <div>
+                        <p>{this.props.event.date}</p>
                     </div>
                     <div>
                         <button className="button clickable">Sign In</button>
@@ -21,8 +24,7 @@ class Event extends React.Component {
                 <div className='event-large-body'>
                     <img src={this.props.event.image_url} />
                     <div className='event-large-description'>
-                        <p>About: {this.props.event.description}</p>
-                        <p>Date: {this.props.event.date}</p>
+                        <p>{this.props.event.description}</p>
                     </div>
                 </div>
             </div>

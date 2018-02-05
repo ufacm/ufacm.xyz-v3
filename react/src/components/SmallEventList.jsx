@@ -95,7 +95,7 @@ class SmallEventList extends React.Component {
             refreshText = "Refresh";
         }
         return (
-            <div className="events-container">
+            <div className="events-container white">
                 <h2>Events</h2>
                 <button onClick={this.refresh}>{refreshText}</button>
                 <div className="events">{events}</div>

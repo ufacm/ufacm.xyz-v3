@@ -22,6 +22,7 @@ class Nav extends React.Component {
         }
         return <div className="nav">
             <h3><a href="/">uf acm</a></h3>
+            {this.renderLink("Hello, World!", null)}
             {this.renderLink("Log In", this.props.onLoginButtonClick)}
             {this.renderLink("Sign Up", this.props.onSignupButtonClick)}
         </div>

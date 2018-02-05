@@ -19,7 +19,9 @@
     padding: 10px;
 
     box-shadow: 0px 0px 5px grey;
-    z-index: 1000; // put on top of everything
+    z-index: 20; // put on top of everything
+
+    background-color: $light-color;
 }
 
 .popup-form input {

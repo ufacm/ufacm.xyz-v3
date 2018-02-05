@@ -1,9 +1,9 @@
 import React from 'react';
-import HomepageTitle from './HomepageTitle';
-import Nav from './Nav';
-import Paragraph from './Paragraph';
-import SmallEventList from './SmallEventList';
-import PopupForm from './PopupForm';
+import HomepageTitle from './HomepageTitle.jsx';
+import Nav from './Nav.jsx';
+import Paragraph from './Paragraph.jsx';
+import SmallEventList from './SmallEventList.jsx';
+import PopupForm from './PopupForm.jsx';
 
 
 class Homepage extends React.Component {

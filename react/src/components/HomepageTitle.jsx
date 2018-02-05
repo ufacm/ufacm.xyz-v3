@@ -1,5 +1,4 @@
 import React from 'react';
-import PopupForm from './PopupForm';
 
 class Particle {
     /**
