@@ -20,11 +20,11 @@ export default class EventList extends React.Component {
         let url = '/jsons/events.json';
         $.ajax({
             url: url,
-            type: "GET",
+            type: 'GET',
             success: this.setStateFromEvents,
             error: this.onfail
         });
-        console.log('Getting events');
+        console.log('EventList: Getting events');
     }
 
     setStateFromEvents(data) {
@@ -39,7 +39,7 @@ export default class EventList extends React.Component {
         
         return (
             <Segment padded>
-                <Header as="h3" style={{ fontSize: '2em' }}>Upcoming Events</Header>
+                <Header textAlign='center' as='h3' style={{ fontSize: '2em' }}>Upcoming Events</Header>
                 <Card.Group>
                     {events}
                 </Card.Group>

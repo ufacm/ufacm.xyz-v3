@@ -1,9 +1,9 @@
 import React from 'react';
 import {Card, Icon} from 'semantic-ui-react';
 
-function Event({ name, description, date, location }) {
+function Event({ name, description, date, location, id }) {
     return (
-        <Card centered>
+        <Card key={id}>
             <Card.Content>
             <Card.Header>
                 {name}

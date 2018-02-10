@@ -16,18 +16,18 @@
             "location": "China"
         },
         {
-            "name": "GBM Spring 2018",
+            "name": "GBM Spring 2020",
             "date": "January 29, 2018",
             "description": "It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-            "id": "1",
+            "id": "3",
             "image_url": "/images/lib3.jpg",
             "location": "Somewhere"
         },
         {
-            "name": "GBM Spring 2019",
-            "date": "January 29, 2019",
+            "name": "GBM Spring 2021",
+            "date": "January 29, 2021",
             "description": "Eessentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-            "id": "2",
+            "id": "4",
             "image_url": "/images/lib2.jpg",
             "location": "Elsewhere"
         }
