@@ -1,0 +1,10 @@
+language: node_js
+node_js:
+- '8'
+cache:
+  directories:
+  - node_modules
+notifications:
+  slack:
+    secure: ZyDqSE6liB8eUSvu4z6yIJht5L7KuBdlekl6HjRxl0biJ7sS9/+EBC0G4KXT0ndrCrB4y8vt2sPlOeZdMtIhSI+vLZ27HrnOOcYtZRVlTCCUo2/7dKxtF3LXnh9IauCfti1QHJjGpLjqbqF6xUkqyM9FzCU2NypF5y5ujzkMFo/m+qu2/fHKdmIqUX8jRp/fBrK9CjCHfkqF7/ghgrkz6nwrFwt7WgqgL5vZwnZ3bjepTyJkgaGsWem3aWwlKnfJ/k/zFGbtGPMGGB43vOEq/jAjT3MVHVnt99vnXC+b3opGouL2bNvKVWp8CKW5MUZigB5IsNUt54g05G8SeGN7HHbWIcoTlBzrF3XYlneoqfh9ZMgQ7HdELeSV2T9QqASgoDjkCsU4ndkMt+Xb+cZAmO39VIv1kYjxNJv9uaBxYSqKtxmjF5FXq9bKsEjef++LA+vtqr9iL1B87+NMNes8qRp95LrEL2ZmziTuWnAsMROcg6XMnoPRBNyViJoDy5aVyHgO60gKgwF8GnG5vlUtDRos6eYL1zFib9P2xaCPgeACiNNvC7N2paWhlK+Qingerijo7hf9VSS9WHdJhLf28Tom3VoaBkwu7rAjFshl/RFlc33e+8yc1PMkgazbu3a/E8+1wJ/uimfdqc1VIWVjaabXhMSMDjOCYO4eTp8X8/Q=
+  email: false
