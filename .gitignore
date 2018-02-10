@@ -2,3 +2,4 @@ node_modules/
 public/javascripts/
 public/stylesheets/*.css
 public/react/build/
+semantic/

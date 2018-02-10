@@ -1,20 +1,14 @@
 import React from 'react';
+import {Container, Segment, Header, Button, Divider} from 'semantic-ui-react';
 
-class Paragraph extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        return <div className="paragraph">
-  <div>
-    <p>
-      This is some text about the UF ACM.
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec volutpat ultricies libero. 
-
-    </p>
-  </div>
-</div>;
-    }
+export default function Paragraph({ title, content }) {
+    return (
+        <Segment padded>
+            <Container text>
+                <Header as='h3' style={{ fontSize: '2em' }}>{title}</Header>
+                <p style={{ fontSize: '1.33em' }}>{content}</p>
+                <Button as='a' size='large'>Read More</Button>
+   </Container>
+        </Segment>
+    );
 }
-export default Paragraph;
