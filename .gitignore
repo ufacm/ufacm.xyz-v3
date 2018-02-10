@@ -3,6 +3,9 @@ public/stylesheets/*.css
 public/react/build/
 semantic/
 
+# direnv
+.envrc
+
 # Created by https://www.gitignore.io/api/vim,node,macos,webstorm,visualstudiocode
 
 ### macOS ###
