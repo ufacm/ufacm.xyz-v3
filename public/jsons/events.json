@@ -21,7 +21,7 @@
             "description": "It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
             "id": "1",
             "image_url": "/images/lib3.jpg",
-            "location": "Vietnam"
+            "location": "Somewhere"
         },
         {
             "name": "GBM Spring 2019",
@@ -29,7 +29,7 @@
             "description": "Eessentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
             "id": "2",
             "image_url": "/images/lib2.jpg",
-            "location": "Woodstock"
+            "location": "Elsewhere"
         }
     ]
 }
