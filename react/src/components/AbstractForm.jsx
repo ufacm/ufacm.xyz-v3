@@ -34,20 +34,31 @@ export default class AbstractForm extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.dismissMessage = this.dismissMessage.bind(this);
         this.removeErrors = this.removeErrors.bind(this);
+        this.validate = this.validate.bind(this);
+        this.clearFields = this.clearFields.bind(this);
+
     }
 
-    removeErrors() {
-
-        let errors = {}
-        let fields = {}
+    clearFields() {
+        let fields = {};
         for (let field in this.state.fields) {
-            errors[field] = false;
             fields[field] = '';
         }
 
         this.setState({
-            errors: errors,
             fields: fields,
+        });
+
+    }
+
+    removeErrors() {
+        let errors = {}
+        for (let field in this.state.fields) {
+            errors[field] = false;
+        }
+
+        this.setState({
+            errors: errors,
             failure: false,
             errorName: 'There was an error',
         });
@@ -60,23 +71,31 @@ export default class AbstractForm extends React.Component {
     }
 
     handleSubmit() {
-        $.ajax({
-            type: 'POST',
-            url: this.state.url,
-            data: this.state.fields,
-            success: () => {
-                console.log('Form: success');
-                this.setState({success: true, failure: false});
-            },
-            error: () => {
-                console.log('Form: error');
-                this.setState({failure: true, success: false});
-            }
-        });
+        if (this.validate(this.state.fields)) {
+            this.removeErrors();
+            $.ajax({
+                type: 'POST',
+                url: this.state.url,
+                data: this.state.fields,
+                success: () => {
+                    console.log('Form: POST success to ' + this.state.url);
+                    this.setState({success: true, failure: false});
+                    this.clearFields();
+                },
+                error: () => {
+                    console.log('Form: POST connection error to ' + this.state.url);
+                    this.setState({
+                        failure: true, 
+                        success: false,
+                        errorName: 'Could not connect to server.'
+                    });
+                }
+            });
+        }
     }
 
     /**
-     * Returns whether the form data is valid. Default behavior is no validation (must be overloaded).
+     * Returns whether the form data is valid. Default behavior is no validation (must be overriden).
      * @param {Object} data 
      */
     validate(data) {

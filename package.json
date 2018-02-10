@@ -9,7 +9,7 @@
     "build-start-watch": "webpack --watch & npm start",
     "bsw": "npm run build-start-watch",
     "dev": "npm run build-start-watch",
-    "postinstall": "cd semantic && gulp build && cd .."
+    "postinstall": "cd semantic && gulp build && mv dist ../public/semantic/dist && cd .."
   },
   "dependencies": {
     "babel-preset-es2015": "^6.24.1",

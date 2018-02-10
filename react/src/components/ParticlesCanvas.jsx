@@ -74,6 +74,9 @@ class ParticlesCanvas extends React.Component {
         this.draw = this.draw.bind(this);
         this.addNewParticle = this.addNewParticle.bind(this);
         this.particles = [];
+
+        this.PARTICLE_CREATION_INTERVAL = 50; // number of milliseconds between particle creations
+        this.MAX_VELOCITY = 2.5;
     }
 
     componentDidMount() {
@@ -93,7 +96,7 @@ class ParticlesCanvas extends React.Component {
 
         let x = Math.random() * this.refs.canvas.width;
         let y = Math.random() * (this.refs.canvas.height - 50) + 50;
-        let v = Math.random() * 3;
+        let v = Math.random() * this.MAX_VELOCITY;
         let angle = Math.random() * Math.PI * 2;
         let deltaAngle = Math.PI * (Math.random()*0.2 - 0.1);
         let opacity = Math.random();
@@ -101,7 +104,7 @@ class ParticlesCanvas extends React.Component {
 
         this.particles.push(new Particle(x, y, v, angle, deltaAngle, radius, opacity, 2000));
 
-        window.setTimeout(this.addNewParticle, 50);
+        window.setTimeout(this.addNewParticle, this.PARTICLE_CREATION_INTERVAL);
     }
 
     draw() {

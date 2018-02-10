@@ -13,10 +13,10 @@ class HomepageTitle extends React.Component {
         return <div className="homepage-title">
           <div className="title-container">
             <img src="/images/acm_white.png"></img>
-            <Modal trigger={<Button inverted>Log In</Button>} >
+            <Modal trigger={<Button inverted>Log In</Button>} size='mini' inverted>
                 <LoginForm />
             </Modal>
-            <Modal trigger={<Button inverted>Sign Up</Button>} >
+            <Modal trigger={<Button inverted>Sign Up</Button>} size='mini' secondary>
                 <SignupForm />
             </Modal>
           </div>

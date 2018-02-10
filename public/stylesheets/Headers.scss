@@ -1,11 +1,19 @@
 $font-stack: 'Lato', sans-serif;
-$acm-font: 'Comfortaa', 'Lato', sans-serif;
+$acm-font: 'Comfortaa', sans-serif;
+
 $primary-color: #68b3fb;
-$primary-color-2: #59e2fb;
+$primary-color-2: #52d7ee;
+
+/* uncomment for night mode */
+// $primary-color: black;
+// $primary-color-2: darkblue;
+
 $dark-color: #393E41;
 $light-color: #f5f9fc;
+
 $lighter-color: lighten($light-color, 100%);
 $darker-light-color: darken($light-color, 10%);
+
 $transparent: rgba(0, 0, 0, 0);
-$gradient: linear-gradient(to top right, $primary-color, $primary-color-2);
-$nav-height: 60px;
+
+$gradient: linear-gradient(to top left, $primary-color, $primary-color-2);

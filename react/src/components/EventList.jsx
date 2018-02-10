@@ -38,8 +38,8 @@ export default class EventList extends React.Component {
         }
         
         return (
-            <Segment padded>
-                <Header textAlign='center' as='h3' style={{ fontSize: '2em' }}>Upcoming Events</Header>
+            <Segment padded inverted>
+                <Header textAlign='center' as='h2' style={{ fontSize: '2em' }}>Upcoming Events</Header>
                 <Card.Group>
                     {events}
                 </Card.Group>

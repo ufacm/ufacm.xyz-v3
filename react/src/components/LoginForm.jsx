@@ -20,15 +20,15 @@ export default class LoginForm extends AbstractForm {
                                                 header='Form Failed' content={this.state.errorName} /> : '';
         return (
             <Segment padded>
-            <Container>
                 <Header textAlign='center' as="h3" style={{ fontSize: '2em' }}>Log In</Header>
                     {error}
-                    <Form>
-                        <Form.Input onChange={this.changeFieldFactory('email')} label='Email' placeholder='UFL Email' error={this.state.errors.email} />
+                    <Form clearing>
+                        <Form.Input onChange={this.changeFieldFactory('email')} label='UFL Email' placeholder='albert.gator@ufl.edu' error={this.state.errors.email} />
                         <Form.Input onChange={this.changeFieldFactory('password')} label='Password' placeholder='Password' type='password' error={this.state.errors.password} />
-                        <Button onClick={this.handleSubmit} type='submit'>Log In</Button>
                     </Form>
-            </Container>
+                    <Container textAlign='right'>
+                        <Button primary onClick={this.handleSubmit} type='submit'>Log In</Button>
+                    </Container>
             </Segment>
         );
     }

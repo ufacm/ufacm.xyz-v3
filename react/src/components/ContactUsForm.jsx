@@ -21,17 +21,19 @@ export default class LoginForm extends AbstractForm {
         const success = (this.state.success)? <Message success onDismiss={this.dismissMessage} 
                                                 header='Form Completed' content='We got your message!' /> : '';                                                
         return (
-            <Segment padded>
-            <Container>
-                <Header textAlign='center' as="h3" style={{ fontSize: '2em' }}>Contact Us</Header>
-                    {success}
-                    {error}
-                    <Form>
-                        <Form.Input onChange={this.changeFieldFactory('name')} label='Name' placeholder='Name' error={this.state.errors.name} />
-                        <Form.Input onChange={this.changeFieldFactory('email')} label='Email' placeholder='Email' type='email' error={this.state.errors.email} />
-                        <Form.TextArea onChange={this.changeFieldFactory('message')} label='Message' placeholder='Message' error={this.state.errors.message} />
-                        <Button onClick={this.handleSubmit} type='submit'>Send</Button>
-                    </Form>
+            <Segment padded inverted>
+            <Container text>
+                <Header inverted as="h3" style={{fontSize: '2em'}}>Contact Us</Header>
+                {success}
+                {error}
+                <Form inverted>
+                    <Form.Input onChange={this.changeFieldFactory('name')} label='Name' placeholder='Name' error={this.state.errors.name} />
+                    <Form.Input onChange={this.changeFieldFactory('email')} label='Email' placeholder='Email' type='email' error={this.state.errors.email} />
+                    <Form.TextArea onChange={this.changeFieldFactory('message')} label='Message' placeholder='Message' error={this.state.errors.message} />
+                </Form>
+                <Container inverted textAlign='right'>
+                    <Button primary onClick={this.handleSubmit} type='submit'>Send</Button>
+                </Container>
             </Container>
             </Segment>
         );
