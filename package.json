@@ -8,7 +8,9 @@
     "build-start": "npm run build && npm start",
     "build-start-watch": "webpack --watch & npm start",
     "bsw": "npm run build-start-watch",
-    "dev": "npm run build-start-watch"
+    "dev": "npm run build-start-watch",
+    "preinstall": "npm i -g gulp",
+    "postinstall": "cd semantic && gulp build && cd .."
   },
   "dependencies": {
     "babel-preset-es2015": "^6.24.1",
