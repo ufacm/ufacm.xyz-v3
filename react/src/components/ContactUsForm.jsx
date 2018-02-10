@@ -1,74 +1,25 @@
 import React from 'react';
+import AbstractForm from './AbstractForm.jsx';
 import {Button, Form, Container, Message, Header, Segment} from 'semantic-ui-react';
 import $ from 'jquery';
 
-export default class ContactUsForm extends React.Component {
+export default class LoginForm extends AbstractForm {
     constructor() {
-        super();
-
-        this.state = {
-            nameError: false,
-            emailError: false,
-            messageError: false,
-            name: '',
-            email: '',
-            message: '',
-            success: false,
-            failure: false,
-            errorName: 'There was an error',
-        };
+        super({
+            fields: ['name', 'email', 'message'],
+            url: '/contactus',
+        });
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.dismissMessage = this.dismissMessage.bind(this);
         this.removeErrors = this.removeErrors.bind(this);
     }
 
-    removeErrors() {
-        this.setState({
-            nameError: false,
-            emailError: false,
-            messageError: false,
-            success: false,
-            failure: false,
-            errorName: 'There was an error',
-        });
-    }
-
-
-    dismissMessage() {
-        this.setState({success: false, failure: false});
-        this.removeErrors();
-    }
-
-    handleSubmit() {
-        $.ajax({
-            type: 'POST',
-            url: '/contactus',
-            data: {
-                name: this.state.name,
-                email: this.state.email,
-                message: this.state.message,
-            },
-            success: () => {
-                console.log('ContactUsForm: success');
-                this.setState({success: true, failure: false});
-                window.setTimeout(() => {
-                    this.setState({success: false});
-                }, 3000);
-            },
-            error: () => {
-                console.log('ContactUsForm: error');
-                this.setState({failure: true, success: false});
-            }
-        });
-    }
-
-
     render() {
-        const success = (this.state.success)? <Message success onDismiss={this.dismissMessage}
-                                                header='Form Completed' content='We got your message' /> : '';
         const error = (this.state.failure)? <Message error onDismiss={this.dismissMessage} 
                                                 header='Form Failed' content={this.state.errorName} /> : '';
+        const success = (this.state.success)? <Message success onDismiss={this.dismissMessage} 
+                                                header='Form Completed' content='We got your message!' /> : '';                                                
         return (
             <Segment padded>
             <Container>
@@ -76,10 +27,10 @@ export default class ContactUsForm extends React.Component {
                     {success}
                     {error}
                     <Form>
-                        <Form.Input onChange={(e) => this.setState({name: e.target.value})} label='Name' placeholder='Name' error={this.state.nameError} />
-                        <Form.Input onChange={(e) => this.setState({email: e.target.value})} label='Email' placeholder='Email' error={this.state.emailError} />
-                        <Form.TextArea onChange={(e) => this.setState({message: e.target.value})} label='Message' placeholder='Message' error={this.state.messageError} />
-                        <Button onClick={this.handleSubmit} type='submit'>Submit</Button>
+                        <Form.Input onChange={this.changeFieldFactory('name')} label='Name' placeholder='Name' error={this.state.errors.name} />
+                        <Form.Input onChange={this.changeFieldFactory('email')} label='Email' placeholder='Email' type='email' error={this.state.errors.email} />
+                        <Form.TextArea onChange={this.changeFieldFactory('message')} label='Message' placeholder='Message' error={this.state.errors.message} />
+                        <Button onClick={this.handleSubmit} type='submit'>Send</Button>
                     </Form>
             </Container>
             </Segment>
