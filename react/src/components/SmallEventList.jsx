@@ -42,14 +42,7 @@ class SmallEventList extends React.Component {
     }
 
     getEventsFromServer() {
-      var page_id = 1776675752608125;
-      var access_token = `EAACEdEose0cBABpMWugbY8DdEZBV8XHq6VSn5UVcxHokXLXzfLQRRoFDq0cPwO06pLMI4wYsZBUfpZCfzNK3MPDNo2ZA2CimKFHPJPyHVOG9p7L2jrG2WZAqJ80AAloFXnIRHbqlAZAWkYS6A6DITmc4yXNGSqPw2hjbBoCV9AMlvE8MbOgFZCgOT5DibVYRnyCI3osLl8S8QZDZD`;
-      return fetch(`https://graph.facebook.com/v2.3/${page_id}?access_token=${access_token}&fields=events`)
-      .then( res => res.json())
-      .then( body =>{
-        //TODO::needs to be parsed and put into a good format
-        this.setStateFromEvents(body);
-      })
+    
         // let url = 'https://raw.githubusercontent.com/garyg1/garyg1.github.io/master/json/applets.json';
         // $.ajax({
         //     url: url,
