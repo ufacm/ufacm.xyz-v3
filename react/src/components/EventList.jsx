@@ -1,23 +1,30 @@
 import React from 'react';
 import $ from 'jquery';
-import {Button, Card, Divider, Header, Segment} from 'semantic-ui-react';
+import {Button, Card, Container, Divider, Header, Segment, Responsive} from 'semantic-ui-react';
 import Event from './Event.jsx';
 
+import Globals from './Globals';
+
+const inverted = Globals.inverted;
+
 export default class EventList extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
-            events: []
-        }
+            events: [],
+            limit: parseInt(props.limit)
+        };
 
         this.fetchEventsFromServer = this.fetchEventsFromServer.bind(this);
         this.setStateFromEvents = this.setStateFromEvents.bind(this);
+        this.increaseLimit = this.increaseLimit.bind(this);
+        this.resetLimit = this.resetLimit.bind(this);
 
         this.fetchEventsFromServer();
     }
 
     fetchEventsFromServer() {
-        let url = '/jsons/events.json';
+        let url = this.props.url;
         $.ajax({
             url: url,
             type: 'GET',
@@ -31,19 +38,33 @@ export default class EventList extends React.Component {
         this.setState({events: data.events});
     }
 
-    render() {
+    increaseLimit() {
+        if (this.state.limit)
+            this.setState({limit: this.state.limit + parseInt(this.props.limit) });
+    }
+
+    resetLimit() {
+        if (this.state.limit)
+            this.setState({limit: parseInt(this.props.limit) });
+    }
+
+    render() { console.log(this.state.limit, this.props.limit);
         let events = [];
         if (this.state.events) {
-            events = this.state.events.map(( event ) => ( new Event(event) ));
+            events = this.state.events.slice(0, this.state.limit)
+                .map(( event ) => ( new Event(event) ));
         }
         
         return (
-            <Segment padded inverted>
-                <Header textAlign='center' as='h2' style={{ fontSize: '2em' }}>Upcoming Events</Header>
-                <Card.Group>
-                    {events}
-                </Card.Group>
-            </Segment>
+            <Responsive>
+                <Segment textAlign='center' clearing inverted={inverted? true : false}>
+                    <Header textAlign='center' as='h3' style={{fontSize: '2em'}}>{this.props.title}</Header>
+                    <Card.Group centered>
+                        {events}
+                    </Card.Group>
+                    <Button onClick={this.increaseLimit} style={{marginTop: '10px'}}>More</Button>
+                </Segment>
+            </Responsive>
         );
     }
 }

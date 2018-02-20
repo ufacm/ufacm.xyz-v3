@@ -1,10 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import HomepageTitle from './HomepageTitle.jsx';
 import EventList from './EventList.jsx';
 import Paragraph from './Paragraph.jsx';
 import ContactUsForm from './ContactUsForm.jsx';
 import Nav from './Nav.jsx';
+import GoogleMap from './GoogleMap.jsx';
 
 
 import {Responsive, Segment} from 'semantic-ui-react';
@@ -22,13 +22,16 @@ export default class Homepage extends React.Component {
         const { fixed } = this.state;
 
         return (
-            <Responsive>
+            <Responsive id="homepage">
                 <Nav />
                 <HomepageTitle />
-                <Paragraph content="A group that does things" title="UF ACM is a group" />
-                <EventList />
-                <ContactUsForm />
+                <GoogleMap />
+                <EventList title="Upcoming Events" url="/jsons/events.json" limit='4' />
             </Responsive>
         );
     }
+}
+
+function ParallaxDivider() {
+    return <Segment style={{backgroundColor: 'rgba(0, 0, 0, 0)', height: '250px'}} />
 }

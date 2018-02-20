@@ -22,8 +22,8 @@ export default class LoginForm extends AbstractForm {
             <Segment padded>
                 <Header textAlign='center' as="h3" style={{ fontSize: '2em' }}>Log In</Header>
                     {error}
-                    <Form clearing>
-                        <Form.Input onChange={this.changeFieldFactory('email')} label='UFL Email' placeholder='albert.gator@ufl.edu' error={this.state.errors.email} />
+                    <Form>
+                        <Form.Input onChange={this.changeFieldFactory('email')} label='Email' placeholder='Albert@ufl.edu' error={this.state.errors.email} />
                         <Form.Input onChange={this.changeFieldFactory('password')} label='Password' placeholder='Password' type='password' error={this.state.errors.password} />
                     </Form>
                     <Container textAlign='right'>

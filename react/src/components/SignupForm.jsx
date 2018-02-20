@@ -64,7 +64,7 @@ export default class LoginForm extends AbstractForm {
                 <Header textAlign='center' as="h3" style={{ fontSize: '2em' }}>Create an Account</Header>
                     {error}
                     <Form>
-                        <Form.Input onChange={this.changeFieldFactory('email')} label='UFL Email' placeholder='albert.gator@ufl.edu' type='email' error={this.state.errors.email} />
+                        <Form.Input onChange={this.changeFieldFactory('email')} label='Email' placeholder='Albert@ufl.edu' type='email' error={this.state.errors.email} />
                         <Form.Input onChange={this.changeFieldFactory('password')} label='Password' placeholder='Password' type='password' error={this.state.errors.password} />
                         <Form.Input onChange={this.changeFieldFactory('confirmpassword')} label='Confirm Password' placeholder='Confirm Password' type='password' error={this.state.errors.confirmpassword} />
                     </Form>
