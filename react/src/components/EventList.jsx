@@ -1,118 +1,70 @@
 import React from 'react';
 import $ from 'jquery';
+import {Button, Card, Container, Divider, Header, Segment, Responsive} from 'semantic-ui-react';
+import Event from './Event.jsx';
 
-class Event extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+import Globals from './Globals';
 
-    render() {
-        // TODO: this UI design is bad for mobile -- fix!
-        return (
-            <div className='event-large white'>
-                <div className='event-large-header'>
-                    <div>
-                        <h3>{this.props.event.name}</h3>
-                    </div>
-                    <div>
-                        <p>{this.props.event.date}</p>
-                    </div>
-                    <div>
-                        <button className="button clickable">Sign In</button>
-                    </div>
-                </div>
-                <div className='event-large-body'>
-                    <img src={this.props.event.image_url} />
-                    <div className='event-large-description'>
-                        <p>{this.props.event.description}</p>
-                    </div>
-                </div>
-            </div>
-        )
-    }
-}
+const inverted = Globals.inverted;
 
 export default class EventList extends React.Component {
-    constructor() {
-        super();
-
+    constructor(props) {
+        super(props);
         this.state = {
-          events: [],
-          loadedEventsFromServer: false,
-          waitingForServer: true,
-          failed: false
+            events: [],
+            limit: parseInt(props.limit)
         };
 
-        // bind(this) allows this.setState() to be in correct scope
-        this.onfail = this.onfail.bind(this);
+        this.fetchEventsFromServer = this.fetchEventsFromServer.bind(this);
         this.setStateFromEvents = this.setStateFromEvents.bind(this);
-        this.refresh = this.refresh.bind(this);
+        this.increaseLimit = this.increaseLimit.bind(this);
+        this.resetLimit = this.resetLimit.bind(this);
 
-        this.getEventsFromServer();
+        this.fetchEventsFromServer();
     }
 
-    refresh() {
-        this.setState({failed: false, waitingForServer: true});
-        this.getEventsFromServer()
-    }
-
-    getEventsFromServer() {
-        let url = '/jsons/events.json';
+    fetchEventsFromServer() {
+        let url = this.props.url;
         $.ajax({
             url: url,
-            type: "GET",
+            type: 'GET',
             success: this.setStateFromEvents,
             error: this.onfail
         });
+        console.log('EventList: Getting events');
     }
 
-    setStateFromEvents(json_string) {
-        console.log(json_string);
-        let serverData = json_string;
-        let events = serverData.events;
-
-        window.setTimeout(function() {
-            this.setState({
-                events: events,
-                loadedEventsFromServer: true,
-                waitingForServer: false,
-                failed: false
-            });
-        }.bind(this), 0);
+    setStateFromEvents(data) {
+        this.setState({events: data.events});
     }
 
-    onfail() {
-        console.log("failed");
-        window.setTimeout(function() {
-            this.setState({failed: true, waitingForServer: false});
-        }.bind(this), 500);
+    increaseLimit() {
+        if (this.state.limit)
+            this.setState({limit: this.state.limit + parseInt(this.props.limit) });
     }
 
-    render() {
-        var events;
-        if (this.state.loadedEventsFromServer) {
-            events = this.state.events.map((event) => <Event key={event.name} event={event} />);
-        }
-        else if (this.state.failed) {
-            events = <p>Sorry, we couldn't fetch events at this time.</p>
-        }
-        else {
-            events = <p>Fetching events...</p>
-        }
+    resetLimit() {
+        if (this.state.limit)
+            this.setState({limit: parseInt(this.props.limit) });
+    }
 
-        var refreshText;
-        if (this.state.waitingForServer) {
-            refreshText = "Loading";
+    render() { console.log(this.state.limit, this.props.limit);
+        let events = [];
+        if (this.state.events) {
+            events = this.state.events.slice(0, this.state.limit)
+                .map(( event ) => ( new Event(event) ));
         }
-        else {
-            refreshText = "Refresh";
-        }
+        
         return (
-            <div className="events-container">
-                <h2>Events</h2>
-                <button className="clickable button" onClick={this.refresh}>{refreshText}</button>
-                <div className="events">{events}</div>
-            </div>
+            <Responsive>
+                <Segment textAlign='center' clearing inverted={inverted? true : false}>
+                    <Header textAlign='center' as='h3' style={{fontSize: '2em'}}>{this.props.title}</Header>
+                    <Card.Group centered>
+                        {events}
+                    </Card.Group>
+                    <Button onClick={this.increaseLimit} style={{marginTop: '10px'}}>More</Button>
+                </Segment>
+            </Responsive>
         );
     }
 }

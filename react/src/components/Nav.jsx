@@ -1,31 +1,40 @@
 import React from 'react';
+import {Menu, Segment} from 'semantic-ui-react';
 
-class Nav extends React.Component {
-    constructor(props) {
-        super(props);
+
+export default class Nav extends React.Component {
+    constructor() {
+        super();
+        
+        this.state = {active: 'Home'};
+        this.onClick = this.onClick.bind(this);
     }
 
-    renderLink(name, onClick) {
-        return <p><a className="clickable" onClick={onClick}>{name}</a></p>;
+    onClick(e) {
+        this.setState({active: e.target.id});
     }
 
     render() {
-        console.log(this.props);
-        if (this.props.signedin) {
-            return <div className="nav">
-                <h3><a href="/">uf acm</a></h3>
-                {this.renderLink(this.props.user.name, null)}
-                {this.renderLink("Events", null)}
-                {this.renderLink("Upload Resume", null)}
-                {this.renderLink("Log Out", null)}
-            </div>
+        const active = this.state.active;
+        if (this.props.signedIn) {
+            return (
+                <Segment inverted style={{width: '100%'}}>
+                    <Menu compact secondary inverted pointing size='large'>
+                        <Menu.Item onClick={this.onClick} id='Home' active={active === 'Home'? true : false} name='Home' as='a' />
+                        <Menu.Item onClick={this.onClick} id='Events' active={active === 'Events'? true : false} name='Events' as='a' />
+                        <Menu.Item onClick={this.onClick} id='Profile' active={active === 'Profile'? true : false} name='Profile' as='a' />
+                    </Menu>
+                </Segment>
+            );
         }
-        return <div className="nav">
-            <h3><a href="/">uf acm</a></h3>
-            {this.renderLink("Hello, World!", null)}
-            {this.renderLink("Log In", this.props.onLoginButtonClick)}
-            {this.renderLink("Sign Up", this.props.onSignupButtonClick)}
-        </div>
+        return (
+            <Segment inverted style={{width: '100%'}}>
+                <Menu compact secondary inverted pointing size='large'>
+                    <Menu.Item onClick={this.onClick} id='Home' active={active === 'Home'? true : false} name='Home' as='a' />
+                    <Menu.Item onClick={this.onClick} id='Events' active={active === 'Events'? true : false} name='Events' as='a' />
+                    <Menu.Item onClick={this.onClick} id='Contact' active={active === 'Contact'? true : false} name='Contact' as='a' />
+                </Menu>
+            </Segment>
+        );
     }
 }
-export default Nav;

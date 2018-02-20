@@ -179,3 +179,4 @@ fabric.properties
 
 
 # End of https://www.gitignore.io/api/vim,node,macos,webstorm,visualstudiocode
+semantic/

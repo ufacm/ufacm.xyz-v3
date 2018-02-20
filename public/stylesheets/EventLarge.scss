@@ -13,10 +13,9 @@
 
 .event-large {
     display: inline-block;
-    float: left;
-    max-width: 900px;
+    max-width: 1200px;
     padding: 20px;
-    margin: 10px;
+    margin: 10px auto;
     box-shadow: 0px 0px 10px grey;
     border-radius: 10px;
 }
@@ -46,7 +45,7 @@
 
 .event-large-body img {
     border: 10px solid $dark-color;
-    max-width: calc(450px - 20px - 20px);
+    max-width: calc(450px - 20px);
     width: calc(100% - 20px);
     margin-bottom: 20px;
     margin-right: 20px;

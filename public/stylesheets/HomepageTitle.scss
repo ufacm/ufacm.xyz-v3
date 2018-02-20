@@ -1,7 +1,7 @@
 @import 'Headers.scss';
 
 .homepage-title {
-    height: calc(90% - 60px - 40px);
+    height: calc(95%);
     width: 100%;
     padding: 20px 0;
     background: $gradient;
@@ -41,7 +41,6 @@
     width: 100%;
     max-width: 800px;
     margin: auto;
-    // padding: 0 10%;
 }
 
 .homepage-title div h1 {
