@@ -1,5 +1,6 @@
 var rp = require('request-promise');
 var fs = require('fs');
+var schedule = require('node-schedule');
 
 function update_server() {
   var page_id = 1776675752608125;
@@ -39,4 +40,6 @@ function update_server() {
       });
 }
 
-update_server();
+schedule.scheduleJob('0 9 * * *', () => {
+  update_server();
+})
