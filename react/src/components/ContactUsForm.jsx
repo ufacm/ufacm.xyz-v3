@@ -39,7 +39,7 @@ export default class LoginForm extends AbstractForm {
                     <Form.TextArea onChange={this.changeFieldFactory('message')} label='Message' placeholder='Message' error={this.state.errors.message} />
                 </Form>
 
-                <Container inverted={inverted? true : false} textAlign='right'>
+                <Container inverted={inverted? 'true' : 'false'} textAlign='right'>
                     <Button primary onClick={this.handleSubmit} type='submit'>Send Message</Button>
                 </Container>
 

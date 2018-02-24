@@ -3,36 +3,29 @@ import {Menu, Segment} from 'semantic-ui-react';
 
 
 export default class Nav extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         
-        this.state = {active: 'Home'};
+        this.state = {active: props.tabs[0]};
         this.onClick = this.onClick.bind(this);
     }
 
     onClick(e) {
         this.setState({active: e.target.id});
+        if (this.props.onChange)
+            this.props.onChange({active: e.target.id});
     }
 
     render() {
         const active = this.state.active;
-        if (this.props.signedIn) {
-            return (
-                <Segment inverted style={{width: '100%'}}>
-                    <Menu compact secondary inverted pointing size='large'>
-                        <Menu.Item onClick={this.onClick} id='Home' active={active === 'Home'? true : false} name='Home' as='a' />
-                        <Menu.Item onClick={this.onClick} id='Events' active={active === 'Events'? true : false} name='Events' as='a' />
-                        <Menu.Item onClick={this.onClick} id='Profile' active={active === 'Profile'? true : false} name='Profile' as='a' />
-                    </Menu>
-                </Segment>
-            );
-        }
+
+        const tabs = this.props.tabs.map((tabName) => (
+            <Menu.Item onClick={this.onClick} id={tabName} key={tabName} active={active === tabName ? true : false} name={tabName} as='a' />
+        ))
         return (
             <Segment inverted style={{width: '100%'}}>
                 <Menu compact secondary inverted pointing size='large'>
-                    <Menu.Item onClick={this.onClick} id='Home' active={active === 'Home'? true : false} name='Home' as='a' />
-                    <Menu.Item onClick={this.onClick} id='Events' active={active === 'Events'? true : false} name='Events' as='a' />
-                    <Menu.Item onClick={this.onClick} id='Contact' active={active === 'Contact'? true : false} name='Contact' as='a' />
+                    {tabs}
                 </Menu>
             </Segment>
         );

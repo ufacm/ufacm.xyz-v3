@@ -1,28 +1,29 @@
 import React from 'react';
-import {Card, Icon} from 'semantic-ui-react';
+import {Card, Icon, Button} from 'semantic-ui-react';
 
-function Event({ name, description, date, location, id }) {
+function Event({ name, description, date, location }, index, action) {
     return (
-        <Card key={id}>
+        <Card key={index}>
             <Card.Content>
             <Card.Header>
                 {name}
             </Card.Header>
-            <Card.Description>
+            <Card.Description textAlign="left">
                 {description}
             </Card.Description>
             </Card.Content>
             <Card.Content extra>
-            <a>
                 <Icon name='calendar' />
                 {date}
-            </a>
             </Card.Content>
             <Card.Content extra>
-            <a>
                 <Icon name='pin' />
                 {location}
-            </a>
+            </Card.Content>
+            <Card.Content style={{flexGrow: 0}}>
+                {/* FlexGrow: 0 -- Don't make button row taller than it has to be */}
+                <Button content={action || "Sign In"} labelPosition="left" icon="user" />
+                <Button content="More" labelPosition="left" icon="arrow right" />
             </Card.Content>
         </Card>
     );

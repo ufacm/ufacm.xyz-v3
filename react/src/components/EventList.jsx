@@ -12,13 +12,15 @@ export default class EventList extends React.Component {
         super(props);
         this.state = {
             events: [],
-            limit: parseInt(props.limit)
+            limit: parseInt(props.limit) || 8,
+            err: false,
         };
 
         this.fetchEventsFromServer = this.fetchEventsFromServer.bind(this);
         this.setStateFromEvents = this.setStateFromEvents.bind(this);
         this.increaseLimit = this.increaseLimit.bind(this);
         this.resetLimit = this.resetLimit.bind(this);
+        this.onfail = this.onfail.bind(this);
 
         this.fetchEventsFromServer();
     }
@@ -29,9 +31,17 @@ export default class EventList extends React.Component {
             url: url,
             type: 'GET',
             success: this.setStateFromEvents,
-            error: this.onfail
+            failure: this.onfail,
         });
         console.log('EventList: Getting events');
+    }
+
+    onfail(err) {
+        this.setState({
+            err: true,
+        });
+
+        console.log(err);
     }
 
     setStateFromEvents(data) {
@@ -48,21 +58,32 @@ export default class EventList extends React.Component {
             this.setState({limit: parseInt(this.props.limit) });
     }
 
-    render() { console.log(this.state.limit, this.props.limit);
+    render() {
         let events = [];
         if (this.state.events) {
-            events = this.state.events.slice(0, this.state.limit)
-                .map(( event ) => ( new Event(event) ));
+            if (this.state.limit) {
+                events = this.state.events.slice(0, this.state.limit)
+                .map(( event, index ) => ( new Event(event, index) ));
+            } else {
+                events = this.state.events.slice()
+                .map(( event, index ) => ( new Event(event, index) ));
+            }
+        }
+
+        let err = '';
+        if (this.state.err) {
+            err = <Header>Failed to connect to server.</Header>;
         }
         
         return (
             <Responsive>
                 <Segment textAlign='center' clearing inverted={inverted? true : false}>
                     <Header textAlign='center' as='h3' style={{fontSize: '2em'}}>{this.props.title}</Header>
+                    {err}
                     <Card.Group centered>
                         {events}
                     </Card.Group>
-                    <Button onClick={this.increaseLimit} style={{marginTop: '10px'}}>More</Button>
+                    <Button basic onClick={this.increaseLimit} style={{marginTop: '10px'}} icon="chevron down" />
                 </Segment>
             </Responsive>
         );

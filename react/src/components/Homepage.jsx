@@ -22,8 +22,7 @@ export default class Homepage extends React.Component {
         const { fixed } = this.state;
 
         return (
-            <Responsive id="homepage">
-                <Nav />
+            <Responsive>
                 <HomepageTitle />
                 <GoogleMap />
                 <EventList title="Upcoming Events" url="/jsons/events.json" limit='4' />
