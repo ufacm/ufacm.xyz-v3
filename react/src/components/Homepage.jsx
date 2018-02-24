@@ -1,82 +1,32 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import HomepageTitle from './HomepageTitle.jsx';
-import Nav from './Nav.jsx';
+import EventList from './EventList.jsx';
 import Paragraph from './Paragraph.jsx';
-import SmallEventList from './SmallEventList.jsx';
-import PopupForm from './PopupForm.jsx';
+import ContactUsForm from './ContactUsForm.jsx';
 
+import { Button, Container, Divider, Grid, Header, Icon, Image, List,
+    Menu, Responsive, Segment, Sidebar, Visibility } from 'semantic-ui-react';
 
-class Homepage extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            showLoginPopup: false,
-            showSignupPopup: false
-        }
-
-        // bind scope to callback functions
-        this.toggleLoginPopup = this.toggleLoginPopup.bind(this);
-        this.toggleSignupPopup = this.toggleSignupPopup.bind(this);
-        this.closePopups = this.closePopups.bind(this);
-    }
-
-    /**
-     * Toggles LoginPopup between open/closed.
-     */
-    toggleLoginPopup() {
-        if (this.state.showLoginPopup)
-            this.closePopups();
-
-        else
-            this.setState({
-                showSignupPopup: false,
-                showLoginPopup: true
-            });
-    }
-
-    /**
-     * Toggles SignupPopup between open/closed.
-     */
-    toggleSignupPopup() {
-        if (this.state.showSignupPopup)
-            this.closePopups();
-
-        else
-            this.setState({
-                showLoginPopup: false,
-                showSignupPopup: true
-            });
-    }
-
-    /** Closes login and signup popups. */
-    closePopups() {
-        this.setState({
-            showLoginPopup: false,
-            showSignupPopup: false
-        });
+export default class Homepage extends React.Component {
+    constructor() {
+        super();
+        this.state = {};
+        this.hideFixedMenu = () => this.setState({ fixed: false });
+        this.showFixedMenu = () => this.setState({ fixed: true });
     }
 
     render() {
-        let loginPopup = <PopupForm close={this.closePopups}
-                                    formType="login"
-                                    formURL="/login" />;
-        let signupPopup = <PopupForm close={this.closePopups}
-                                    formType="signup"
-                                    formURL="/signup" />;
+        const { children } = this.props;
+        const { fixed } = this.state;
 
-        return <div className="homepage">
-            {this.state.showLoginPopup? loginPopup : null}
-            {this.state.showSignupPopup? signupPopup : null}
-            <Nav onLoginButtonClick={this.toggleLoginPopup}
-                onSignupButtonClick={this.toggleSignupPopup}/>
-            <HomepageTitle onLoginButtonClick={this.toggleLoginPopup}
-                        onSignupButtonClick={this.toggleSignupPopup}/>
-            <div className="divider"></div>
-            <Paragraph />
-            <div className="divider"></div>
-            <SmallEventList />
-        </div>;
+        return (
+            <Responsive>
+                <HomepageTitle />
+                <Paragraph content="A group that does things" title="UF ACM is a group" />
+                <EventList />
+                <ContactUsForm />
+            </Responsive>
+        );
     }
 }
-export default Homepage;

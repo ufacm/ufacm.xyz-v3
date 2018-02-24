@@ -1,6 +1,7 @@
 public/javascripts/
 public/stylesheets/*.css
 public/react/build/
+semantic/
 
 # Created by https://www.gitignore.io/api/vim,node,macos,webstorm,visualstudiocode
 
