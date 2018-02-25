@@ -24,7 +24,7 @@ export default class Homepage extends React.Component {
         return (
             <Responsive>
                 <HomepageTitle />
-                <GoogleMap />
+                <GoogleMap title="Where are we?" />
                 <EventList title="Upcoming Events" url="/jsons/events.json" limit='4' />
             </Responsive>
         );

@@ -77,14 +77,16 @@ export default class EventList extends React.Component {
         
         return (
             <Responsive>
-                <Segment textAlign='center' clearing inverted={inverted? true : false}>
+                <Container fluid textAlign="center" >
+                {/* <Segment textAlign='center' clearing inverted={inverted? true : false}> */}
                     <Header textAlign='center' as='h3' style={{fontSize: '2em'}}>{this.props.title}</Header>
                     {err}
                     <Card.Group centered>
                         {events}
                     </Card.Group>
                     <Button basic onClick={this.increaseLimit} style={{marginTop: '10px'}} icon="chevron down" />
-                </Segment>
+                {/* </Segment> */}
+                </Container>
             </Responsive>
         );
     }

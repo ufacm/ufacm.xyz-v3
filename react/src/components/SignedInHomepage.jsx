@@ -12,42 +12,42 @@ export default class SignedInHomepage extends React.Component {
             name: 'James Doe',
             email: 'a-longer-email-address@ufl.edu',
             resume: 'james-doe-resume.pdf',
-            formData: {
-                resume: null,
-            },
         }
-
-        this.onResumeChange = this.onResumeChange.bind(this);
+        this.removeResume = this.removeResume.bind(this);
         this.onResumeFormSubmit = this.onResumeFormSubmit.bind(this);
         this.sendResume = this.sendResume.bind(this);
     }
 
-    onResumeChange(e) {
-        this.setState({formData: {
-            resume: e.target.files[0],
-        }});
-        console.log(e.target.files[0]);
+    removeResume() {
+        return new Promise((resolve, reject) => {
+            // $.ajax('/api/remove-resume')
+            this.setState({resume: ''})
+            setTimeout(() => {
+                resolve();
+            }, 1000);
+        });
     }
 
-    onResumeFormSubmit(e) {
-        e.preventDefault();
-        this.sendResume(this.state.formData.resume);
+    onResumeFormSubmit(file) {
+        return new Promise((resolve, reject) => {
+            this.sendResume(file, resolve, reject);
+        });
     }
 
-    sendResume(file) {
+    sendResume(file, resolve, reject) {
         const uri = '/api/resume-upload';
         var xhr = new XMLHttpRequest();
 
         var formData = new FormData();
         formData.set('resume', file);
         
-        let it = formData.values();
-        while(console.log(it.next()));
-        
         xhr.open("POST", uri, true);
-        xhr.onreadystatechange = function() {
+        xhr.onreadystatechange = () => {
             if (xhr.readyState == 4 && xhr.status == 200) {
-                alert(xhr.responseText); // handle response.
+                this.setState({resume: file.name});
+                resolve();
+            } else if (xhr.readyState == 4) { // if DONE and some other status code
+                reject();
             }
         };
 
@@ -58,13 +58,11 @@ export default class SignedInHomepage extends React.Component {
         return (
             <Responsive id='homepage'>
                 <Grid stackable>
-                    <Grid.Column width={8}>
-                        <Segment>
+                    <Grid.Column width={6}>
                             <Header textAlign='center' as='h3' style={{fontSize: '2em'}}>You</Header>
-                            <UserInfo onResumeChange={this.onResumeChange} onResumeFormSubmit={this.onResumeFormSubmit} data={this.state} />
-                        </Segment>
+                            <UserInfo onResumeRemove={this.removeResume} onResumeFormSubmit={this.onResumeFormSubmit} data={this.state} />
                     </Grid.Column>
-                    <Grid.Column width={8}>
+                    <Grid.Column width={10}>
                         <EventList url='/jsons/events.json' limit='3' title='Events You Attended' />
                     </Grid.Column>
                 </Grid>

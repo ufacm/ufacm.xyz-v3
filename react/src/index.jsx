@@ -6,13 +6,15 @@ import EventList from './components/EventList.jsx';
 import ContactUsForm from './components/ContactUsForm.jsx';
 import {Responsive} from 'semantic-ui-react';
 
+const USE_TRANSITIONS = true;
+
 class Index extends React.Component {
 
   constructor() {
     super();
 
     this.state = {
-      tab: "Home",
+      tab: 'Home',
     }
 
     this.onNavChange = this.onNavChange.bind(this);
@@ -24,20 +26,33 @@ class Index extends React.Component {
 
 
   render() {
-
-    console.log((this.state.tab === 'Events'? '' : 'none'))
+    let hidden, visible;
+    
+    if (USE_TRANSITIONS) {
+      const global = {transition: 'max-height 0.1s ease-in-out, opacity 0.1s ease-in-out', position: 'absolute', width: '100%'};
+      
+      hidden = Object.assign({opacity: 0, zIndex: 0, maxHeight: '0px', overflow: 'hidden'}, global);
+      visible = Object.assign({opacity: 1, zIndex: 1, maxHeight: '5000px'}, global);
+    
+    } else {
+      hidden = {display: 'none'};
+      visible = {};
+    }
+    
     return (
       <Responsive id="homepage">
         <Nav tabs={['Home', 'Events', 'Contact']} onChange={this.onNavChange} />
-      <div style={{display: (this.state.tab === 'Home'? '' : 'none')}} >
-        <Homepage />
-      </div>
-      <div style={{display: (this.state.tab === 'Events'? '' : 'none')}} >
-        <EventList title="Events" url="/jsons/events.json" />
-      </div>
-      <div style={{display: (this.state.tab === 'Contact'? '' : 'none')}} >
-        <ContactUsForm />
-      </div>
+        <div>
+          <div style={this.state.tab === 'Home'? visible : hidden} >
+            <Homepage />
+          </div>
+          <div style={this.state.tab === 'Events'? visible : hidden} >
+            <EventList title="Events" url="/jsons/events.json" />
+          </div>
+          <div style={this.state.tab === 'Contact'? visible : hidden} >
+            <ContactUsForm />
+          </div>
+        </div>
       </Responsive>
     )
   }

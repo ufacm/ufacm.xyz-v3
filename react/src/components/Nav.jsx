@@ -36,6 +36,7 @@ export default class Nav extends React.Component {
                 <Segment inverted style={{width: '100%'}}>
                     <Menu compact secondary pointing inverted size='large'>
                         {tabs}
+                        <Menu.Item />
                     </Menu>
                 </Segment>
             );

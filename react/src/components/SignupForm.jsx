@@ -16,7 +16,7 @@ export default class LoginForm extends AbstractForm {
     }
 
     validate(data) {
-        const emailRegex = /[0-9a-zA-Z.!#$%&'*+-/=?^_`{|}~]+@ufl.edu/;
+        const emailRegex = /[0-9a-zA-Z.!#$%&'*+-/=?^_`{|}~]+@ufl.edu$/;
 
         
         if (!emailRegex.test(data.email)) {
