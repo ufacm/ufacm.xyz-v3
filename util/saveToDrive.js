@@ -85,6 +85,5 @@ function save(auth, readStream, name, resumeFolderId) {
     }, 
     function (err, file) {
       if (err) console.error(err);
-      else console.log('File Id: ', file.id);
     });
 };

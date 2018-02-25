@@ -4,12 +4,13 @@ var router = express.Router();
 var Busboy = require('busboy');
 var fs = require('fs-extra');
 
+var drive = require('../util/saveToDrive');
+
 router.post("/resume-upload", function(req, res) {  
     const busboy = new Busboy({ headers: req.headers });
    
     busboy.on("file", function(fieldname, file, filename) {
-        const fstream = fs.createWriteStream(__dirname + '/../public/upload/' + filename);
-        file.pipe(fstream);
+        drive.saveFile(file, filename);
     });
   
     busboy.on('finish', function() {

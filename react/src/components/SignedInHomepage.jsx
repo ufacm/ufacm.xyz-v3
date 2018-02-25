@@ -58,13 +58,13 @@ export default class SignedInHomepage extends React.Component {
         return (
             <Responsive id='homepage'>
                 <Grid stackable>
-                    <Grid.Column width={6}>
+                    <Grid.Column width={8}>
                         <Segment>
                             <Header textAlign='center' as='h3' style={{fontSize: '2em'}}>You</Header>
                             <UserInfo onResumeChange={this.onResumeChange} onResumeFormSubmit={this.onResumeFormSubmit} data={this.state} />
                         </Segment>
                     </Grid.Column>
-                    <Grid.Column width={10}>
+                    <Grid.Column width={8}>
                         <EventList url='/jsons/events.json' limit='3' title='Events You Attended' />
                     </Grid.Column>
                 </Grid>

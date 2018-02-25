@@ -2,6 +2,9 @@ public/javascripts/
 public/stylesheets/*.css
 public/react/build/
 
+# Don't give out our auth tokens :P
+credentials/
+
 # Created by https://www.gitignore.io/api/vim,node,macos,webstorm,visualstudiocode
 
 ### macOS ###

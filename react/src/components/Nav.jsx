@@ -21,13 +21,24 @@ export default class Nav extends React.Component {
 
         const tabs = this.props.tabs.map((tabName) => (
             <Menu.Item onClick={this.onClick} id={tabName} key={tabName} active={active === tabName ? true : false} name={tabName} as='a' />
-        ))
-        return (
-            <Segment inverted style={{width: '100%'}}>
-                <Menu compact secondary inverted pointing size='large'>
-                    {tabs}
-                </Menu>
-            </Segment>
-        );
+        ));
+
+        if (this.props.subtle) {
+            return (
+                <div style={{textAlign: "center", width: '100%'}}>
+                    <Menu compact pointing size='large'>
+                        {tabs}
+                    </Menu>
+                </div>
+            );
+        } else {
+            return (
+                <Segment inverted style={{width: '100%'}}>
+                    <Menu compact secondary pointing inverted size='large'>
+                        {tabs}
+                    </Menu>
+                </Segment>
+            );
+        }
     }
 }
