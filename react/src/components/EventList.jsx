@@ -59,14 +59,15 @@ export default class EventList extends React.Component {
     }
 
     render() {
+
         let events = [];
         if (this.state.events) {
             if (this.state.limit) {
                 events = this.state.events.slice(0, this.state.limit)
-                .map(( event, index ) => ( new Event(event, index) ));
+                .map(( event, index ) => ( new Event(event, index, null, this.props.auth) ));
             } else {
                 events = this.state.events.slice()
-                .map(( event, index ) => ( new Event(event, index) ));
+                .map(( event, index ) => ( new Event(event, index, null, this.props.auth) ));
             }
         }
 

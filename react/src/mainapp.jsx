@@ -28,10 +28,10 @@ class SignedIn extends React.Component {
       <Responsive id="homepage">
         <Nav tabs={['Profile', 'Events']} onChange={this.onNavChange} />
       <div style={{display: (this.state.tab === 'Profile'? '' : 'none')}} >
-        <SignedInHomepage />
+        <SignedInHomepage auth={true} />
       </div>
       <div style={{display: (this.state.tab === 'Events'? '' : 'none')}} >
-        <EventList title="All Events" url="/jsons/events.json" />
+        <EventList auth={true} title="All Events" url="/jsons/events.json" />
       </div>
       </Responsive>
     )

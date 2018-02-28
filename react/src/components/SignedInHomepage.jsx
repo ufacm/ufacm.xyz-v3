@@ -43,7 +43,7 @@ export default class SignedInHomepage extends React.Component {
         
         xhr.open("POST", uri, true);
         xhr.onreadystatechange = () => {
-            if (xhr.readyState == 4 && xhr.status == 200) {
+            if (xhr.readyState == 4 && xhr.status == 200 && xhr.response.success == true) {
                 this.setState({resume: file.name});
                 resolve();
             } else if (xhr.readyState == 4) { // if DONE and some other status code
@@ -58,12 +58,11 @@ export default class SignedInHomepage extends React.Component {
         return (
             <Responsive id='homepage'>
                 <Grid stackable>
-                    <Grid.Column width={6}>
-                            <Header textAlign='center' as='h3' style={{fontSize: '2em'}}>You</Header>
-                            <UserInfo onResumeRemove={this.removeResume} onResumeFormSubmit={this.onResumeFormSubmit} data={this.state} />
+                    <Grid.Column width={8}>
+                        <UserInfo auth={this.props.auth} onResumeRemove={this.removeResume} onResumeFormSubmit={this.onResumeFormSubmit} data={this.state} />
                     </Grid.Column>
-                    <Grid.Column width={10}>
-                        <EventList url='/jsons/events.json' limit='3' title='Events You Attended' />
+                    <Grid.Column width={8}>
+                        <EventList auth={this.props.auth} url='/jsons/events.json' limit='3' title='Events You Attended' />
                     </Grid.Column>
                 </Grid>
 

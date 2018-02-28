@@ -70,7 +70,7 @@ export default class LoginForm extends AbstractForm {
                     <Form.Input onChange={this.changeFieldFactory('password')} label='Password' placeholder='Password' type='password' error={this.state.errors.password} />
                     <Form.Input onChange={this.changeFieldFactory('confirmpassword')} label='Confirm Password' placeholder='Confirm Password' type='password' error={this.state.errors.confirmpassword} />
                 </Form>
-                <Container textAlign='right' style={{marginTop: '10px'}}>
+                <Container textAlign='right'>
                     <Button primary onClick={this.handleSubmit} type='submit'>Sign Up</Button>
                 </Container>
             </Container>

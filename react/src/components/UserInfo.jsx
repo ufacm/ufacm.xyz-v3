@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Form, Header, Input, List, Modal, Segment} from 'semantic-ui-react';
+import {Button, Container, Form, Header, Input, List, Modal, Segment} from 'semantic-ui-react';
 
 const ERR_TIMEOUT = 2000;
 const SUCCESS_TIMEOUT = 750;
@@ -146,7 +146,9 @@ export default class UserInfo extends React.Component {
 
 
         return (
-            <div>
+        <Container>
+            <Header textAlign='center' as='h3' style={{fontSize: '2em'}}>You</Header>
+            <Segment>
             <List relaxed='very'>
                 <List.Item>
                     <List.Icon name='user' />
@@ -175,27 +177,29 @@ export default class UserInfo extends React.Component {
                             loading={this.state.loadingResume} 
                             content={uploadModalText}
                             primary={!this.state.failedLoadingResume} 
+                            disabled={!this.state.formData.resume}
                         icon={uploadModalIcon} />
                     </Form>
                 </Segment>
             </Modal>
             <Modal size="tiny" basic 
-                    trigger={removeResumeButton}
-                    open={this.state.removeModalOpen}
-                    onClose={this.closeRemoveModal} >
-                    <Modal.Content>Do you really want to remove your resume?</Modal.Content>
-                    <Modal.Actions>
-                        <Button onClick={this.closeRemoveModal}
-                            inverted content="No" icon="left arrow" 
-                        basic />
-                        <Button onClick={this.removeResume}
-                            negative={!this.state.failedRemovingResume}
-                            loading={this.state.removingResume}
-                            content={removeModalText}
-                        icon={removeModalIcon} />
-                    </Modal.Actions>
-                </Modal>
-            </div>
+                trigger={removeResumeButton}
+                open={this.state.removeModalOpen}
+                onClose={this.closeRemoveModal} >
+                <Modal.Content>Do you really want to remove your resume?</Modal.Content>
+                <Modal.Actions>
+                    <Button onClick={this.closeRemoveModal}
+                        inverted content="No" icon="left arrow" 
+                    basic />
+                    <Button onClick={this.removeResume}
+                        negative={!this.state.failedRemovingResume}
+                        loading={this.state.removingResume}
+                        content={removeModalText}
+                    icon={removeModalIcon} />
+                </Modal.Actions>
+            </Modal>
+            </Segment>
+        </Container>
         );
     }
 }

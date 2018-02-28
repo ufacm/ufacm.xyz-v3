@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel='stylesheet' href="/stylesheets/styles.css">
+    <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa:300|Lato" rel="stylesheet">
+</head>
+<body style="height: auto;">
+    <div class="ui container" style="margin-top: 100px;">
+        <div style="width: 100%; text-align: center; margin-bottom: 15px;">
+            <a style="display: inline-block;" href="/">
+                <img class="ui image small centered" src="images/acm.png" />
+            </a>        
+        </div>
+        <div>
+            <div style="text-align: center; width: 100%;" >
+                <div class="ui menu compact pointing large">
+                    <a class="ui item active" href="/login.html">Log In</a>
+                    <a class="ui item" href="/signup.html">Create an Account</a>
+                </div>
+            </div>
+        </div>
+        <div class="ui segment" style="margin: 0 auto; max-width: 500px;">
+            <div class="ui container">
+                <form method="POST" action="/login" class="ui form" id="log-in">
+                    <div class="field">
+                        <label>Email</label>
+                        <div class="ui input">
+                            <input name="email" placeholder="Email" type="email" />
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label>Password</label>
+                        <div class="ui input">
+                            <input required name="password" placeholder="Password" type="password" />
+                        </div>
+                    </div>
+                </form>
+                <div class="ui container right aligned" style="margin-right: 0px !important;">
+                    <button class="ui primary button" form="log-in" type="submit">Log In</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

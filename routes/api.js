@@ -10,14 +10,14 @@ router.post("/resume-upload", function(req, res) {
     const busboy = new Busboy({ headers: req.headers });
    
     busboy.on("file", function(fieldname, file, filename) {
-        drive.saveFile(file, filename);
+        drive.saveFile(file, filename, res);
     });
   
     busboy.on('finish', function() {
-      res.send({message: "GOT IT"});
+      res.send({success: true});
     });
   
-    return req.pipe(busboy);
+    req.pipe(busboy);
   });
 
 module.exports = router;

@@ -23,6 +23,8 @@ export default class Nav extends React.Component {
             <Menu.Item onClick={this.onClick} id={tabName} key={tabName} active={active === tabName ? true : false} name={tabName} as='a' />
         ));
 
+        tabs.push(<Menu.Item />);
+
         if (this.props.subtle) {
             return (
                 <div style={{textAlign: "center", width: '100%'}}>
@@ -36,7 +38,6 @@ export default class Nav extends React.Component {
                 <Segment inverted style={{width: '100%'}}>
                     <Menu compact secondary pointing inverted size='large'>
                         {tabs}
-                        <Menu.Item />
                     </Menu>
                 </Segment>
             );

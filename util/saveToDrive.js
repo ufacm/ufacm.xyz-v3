@@ -16,7 +16,7 @@ module.exports = {
    * @param {ReadStream} readStream The file to get saved to drive.
    * @param {String} name The filename for drive.
    */
-  saveFile(readStream, name) {
+  saveFile(readStream, name, res) {
     
     // get id of resume folder from JSON file
     const idFile = fs.readFileSync(RESUME_FOLDER_ID_PATH);
@@ -28,7 +28,7 @@ module.exports = {
         console.log('Error loading client secret file: ' + err);
         return;
       }
-      authorize(JSON.parse(content), (auth) => save(auth, readStream, name, resumeFolderId));
+      authorize(JSON.parse(content), (auth) => save(auth, readStream, name, resumeFolderId, res));
     });
   }
 }
@@ -65,7 +65,7 @@ function authorize(credentials, callback) {
  * @param {String} name The filename (for Drive).
  * @param {String} resumeFolderId The id of the Drive folder to save to.
  */
-function save(auth, readStream, name, resumeFolderId) {
+function save(auth, readStream, name, resumeFolderId, res) {
     var drive = google.drive({version: 'v3', auth: auth});
 
     var fileMetadata = {
@@ -82,8 +82,10 @@ function save(auth, readStream, name, resumeFolderId) {
       resource: fileMetadata,
       media: media,
       fields: 'id'
-    }, 
-    function (err, file) {
-      if (err) console.error(err);
+    }, function (err, file) {
+      if (err) {
+        console.error(err);
+        res.send({success: false});
+      }
     });
 };

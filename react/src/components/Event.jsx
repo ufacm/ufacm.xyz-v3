@@ -1,7 +1,8 @@
 import React from 'react';
 import {Card, Icon, Button} from 'semantic-ui-react';
 
-function Event({ name, description, date, location }, index, action) {
+function Event({ name, description, date, location }, index, action, auth) {
+    const signInButton = auth? <Button content={action || "Sign In"} labelPosition="left" icon="user" /> : '';
     return (
         <Card key={index}>
             <Card.Content>
@@ -22,7 +23,7 @@ function Event({ name, description, date, location }, index, action) {
             </Card.Content>
             <Card.Content style={{flexGrow: 0}}>
                 {/* FlexGrow: 0 -- Don't make button row taller than it has to be */}
-                <Button content={action || "Sign In"} labelPosition="left" icon="user" />
+                {signInButton}
                 <Button content="More" labelPosition="left" icon="arrow right" />
             </Card.Content>
         </Card>

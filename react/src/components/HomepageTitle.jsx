@@ -2,7 +2,7 @@ import React from 'react';
 import ParticlesCanvas from './ParticlesCanvas.jsx';
 import LoginForm from './LoginForm.jsx';
 import SignupForm from './SignupForm.jsx';
-import {Button, Modal} from 'semantic-ui-react';
+import {} from 'semantic-ui-react';
 
 class HomepageTitle extends React.Component {
     constructor(props) {
@@ -13,12 +13,8 @@ class HomepageTitle extends React.Component {
         return <div className="homepage-title">
           <div className="title-container">
             <img src="/images/acm_white.png"></img>
-            <Modal trigger={<Button inverted>Sign Up</Button>} size='mini'>
-                <SignupForm />
-            </Modal>
-            <Modal trigger={<Button inverted>Log In</Button>} size='mini'>
-                <LoginForm />
-            </Modal>
+            <a href="/signup.html" className="ui button inverted">Sign Up</a>
+            <a href="/login.html" className="ui button inverted">Log In</a>
           </div>
           <ParticlesCanvas />
         </div>;
